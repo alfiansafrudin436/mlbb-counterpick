@@ -1,0 +1,86 @@
+@import 'tailwindcss';
+
+/* Design tokens — satu tema gelap. */
+:root {
+  --background: #0e1220;
+  --foreground: #e8ebf7;
+  --card: #171c2e;
+  --muted: #1f2540;
+  --muted-foreground: #98a1c4;
+  --border: #2b3355;
+  --input: #3a4470;
+  --ring: #f5b942;
+  --primary: #f5b942;
+  --primary-hover: #ffcb63;
+  --primary-foreground: #1b1400;
+  --success: #46d39a;
+  --danger: #ff7a7a;
+
+  --role-tank: #4e9bff;
+  --role-fighter: #ff9248;
+  --role-assassin: #e0567f;
+  --role-mage: #a47bff;
+  --role-marksman: #f1c84b;
+  --role-support: #46d39a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+
+  --color-role-tank: var(--role-tank);
+  --color-role-fighter: var(--role-fighter);
+  --color-role-assassin: var(--role-assassin);
+  --color-role-mage: var(--role-mage);
+  --color-role-marksman: var(--role-marksman);
+  --color-role-support: var(--role-support);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-border);
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+
+  input[type='search']::-webkit-search-cancel-button {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
