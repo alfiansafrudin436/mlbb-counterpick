@@ -4,7 +4,7 @@ import { RotateCcwIcon, SearchIcon, SkullIcon, TrophyIcon } from 'lucide-react'
 import { Panel, RoleChips } from '@/components'
 import { Button } from '@/components/ui/button'
 import { MAX_ENEMIES } from '@/lib/heroes'
-import type { Hero } from '@/types'
+import type { Hero, PickerDictionary } from '@/types'
 import { useHomePage } from '../../hooks'
 import { EnemySlots } from '../EnemySlots'
 import { HeroGrid } from '../HeroGrid'
@@ -12,9 +12,10 @@ import { RecommendationList } from '../RecommendationList'
 
 type CounterPickerProps = {
   heroes: Hero[]
+  dict: PickerDictionary
 }
 
-export const CounterPicker = ({ heroes: allHeroes }: CounterPickerProps) => {
+export const CounterPicker = ({ heroes: allHeroes, dict }: CounterPickerProps) => {
   const {
     enemies,
     enemyNames,
@@ -35,7 +36,7 @@ export const CounterPicker = ({ heroes: allHeroes }: CounterPickerProps) => {
     <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
       <Panel
         id="judul-musuh"
-        title="Tim musuh"
+        title={dict.enemyTeam}
         icon={SkullIcon}
         tone="danger"
         aside={
@@ -45,12 +46,12 @@ export const CounterPicker = ({ heroes: allHeroes }: CounterPickerProps) => {
             </span>
             <Button size="sm" onClick={reset} disabled={!enemies.length}>
               <RotateCcwIcon aria-hidden />
-              Reset
+              {dict.reset}
             </Button>
           </div>
         }
       >
-        <EnemySlots enemies={enemies} onRemove={toggleEnemy} />
+        <EnemySlots enemies={enemies} onRemove={toggleEnemy} dict={dict} />
 
         <div className="relative mt-4">
           <SearchIcon
@@ -61,29 +62,41 @@ export const CounterPicker = ({ heroes: allHeroes }: CounterPickerProps) => {
             type="search"
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-            placeholder="Cari hero…"
-            aria-label="Cari hero"
+            placeholder={dict.searchPlaceholder}
+            aria-label={dict.searchLabel}
             autoComplete="off"
             className="h-11 w-full rounded-[10px] border border-input bg-background/70 pr-3 pl-10 transition-colors placeholder:text-muted-foreground focus:border-accent"
           />
         </div>
         <RoleChips
-          label="Filter role hero musuh"
+          label={dict.enemyRoleFilter}
+          allLabel={dict.allRoles}
           value={pickRole}
           onChange={setPickRole}
           className="my-3"
         />
-        <HeroGrid heroes={heroes} selected={enemyNames} isFull={isFull} onToggle={toggleEnemy} />
+        <HeroGrid
+          heroes={heroes}
+          selected={enemyNames}
+          isFull={isFull}
+          onToggle={toggleEnemy}
+          emptyText={dict.noHeroFound}
+        />
       </Panel>
 
-      <Panel id="judul-rekomendasi" title="Rekomendasi pick" icon={TrophyIcon}>
+      <Panel id="judul-rekomendasi" title={dict.recommendations} icon={TrophyIcon}>
         <RoleChips
-          label="Filter role rekomendasi"
+          label={dict.recommendationRoleFilter}
+          allLabel={dict.allRoles}
           value={recommendationRole}
           onChange={setRecommendationRole}
           className="mb-4"
         />
-        <RecommendationList enemyCount={enemies.length} recommendations={recommendations} />
+        <RecommendationList
+          enemyCount={enemies.length}
+          recommendations={recommendations}
+          dict={dict}
+        />
       </Panel>
     </div>
   )

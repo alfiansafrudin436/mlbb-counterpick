@@ -8,7 +8,7 @@ import {
   WandSparklesIcon,
   type LucideIcon,
 } from 'lucide-react'
-import { ROLE_FILTERS } from '@/lib/roles'
+import { ALL_ROLES, ROLE_FILTERS } from '@/lib/roles'
 import { cn } from '@/lib/utils'
 import type { RoleFilter } from '@/types'
 
@@ -24,12 +24,14 @@ const ROLE_ICONS: Record<RoleFilter, LucideIcon> = {
 
 type RoleChipsProps = {
   label: string
+  // Teks untuk pilihan "semua role" dalam bahasa aktif.
+  allLabel: string
   value: RoleFilter
   onChange: (role: RoleFilter) => void
   className?: string
 }
 
-export const RoleChips = ({ label, value, onChange, className }: RoleChipsProps) => {
+export const RoleChips = ({ label, allLabel, value, onChange, className }: RoleChipsProps) => {
   return (
     <div role="group" aria-label={label} className={cn('flex flex-wrap gap-1.5', className)}>
       {ROLE_FILTERS.map((role) => {
@@ -49,7 +51,7 @@ export const RoleChips = ({ label, value, onChange, className }: RoleChipsProps)
             )}
           >
             <Icon aria-hidden className="size-4" />
-            {role}
+            {role === ALL_ROLES ? allLabel : role}
           </button>
         )
       })}

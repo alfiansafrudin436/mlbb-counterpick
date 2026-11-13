@@ -18,23 +18,31 @@ describe('loadCuratedHeroes', () => {
 
   it('menolak hero duplikat', async () => {
     const dir = await writeContent(`
-- { name: Alfa, roles: [Tank], weakness: Lambat, counteredBy: [Beta] }
-- { name: Beta, roles: [Mage], weakness: Tipis, counteredBy: [Alfa] }
-- { name: Alfa, roles: [Tank], weakness: Lambat, counteredBy: [Beta] }
+- { name: Alfa, roles: [Tank], weakness: { id: Lambat, en: Slow }, counteredBy: [Beta] }
+- { name: Beta, roles: [Mage], weakness: { id: Tipis, en: Squishy }, counteredBy: [Alfa] }
+- { name: Alfa, roles: [Tank], weakness: { id: Lambat, en: Slow }, counteredBy: [Beta] }
 `)
     await expect(loadCuratedHeroes(dir)).rejects.toThrow(ContentError)
   })
 
   it('menolak counter yang tidak ada di file', async () => {
     const dir = await writeContent(`
-- { name: Alfa, roles: [Tank], weakness: Lambat, counteredBy: [Gaib] }
+- { name: Alfa, roles: [Tank], weakness: { id: Lambat, en: Slow }, counteredBy: [Gaib] }
 `)
     await expect(loadCuratedHeroes(dir)).rejects.toThrow(/Gaib/)
   })
 
+  it('menolak kelemahan tanpa terjemahan', async () => {
+    const dir = await writeContent(`
+- { name: Alfa, roles: [Tank], weakness: { id: Lambat }, counteredBy: [Beta] }
+- { name: Beta, roles: [Mage], weakness: { id: Tipis, en: Squishy }, counteredBy: [Alfa] }
+`)
+    await expect(loadCuratedHeroes(dir)).rejects.toThrow(ContentError)
+  })
+
   it('menolak role yang tidak dikenal', async () => {
     const dir = await writeContent(`
-- { name: Alfa, roles: [Jungler], weakness: Lambat, counteredBy: [Alfa] }
+- { name: Alfa, roles: [Jungler], weakness: { id: Lambat, en: Slow }, counteredBy: [Alfa] }
 `)
     await expect(loadCuratedHeroes(dir)).rejects.toThrow(ContentError)
   })

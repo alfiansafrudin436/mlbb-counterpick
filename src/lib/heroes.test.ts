@@ -3,9 +3,24 @@ import type { ApiHero, CuratedHero } from '@/types'
 import { mergeHeroes } from './heroes'
 
 const CURATED: CuratedHero[] = [
-  { name: 'Alfa', roles: ['Assassin'], weakness: 'Tipis', counteredBy: ['Tameng'] },
-  { name: 'Tameng', roles: ['Tank', 'Support'], weakness: 'Lambat', counteredBy: ['Alfa'] },
-  { name: 'Lama', roles: ['Mage'], weakness: 'Tanpa escape', counteredBy: ['Alfa'] },
+  {
+    name: 'Alfa',
+    roles: ['Assassin'],
+    weakness: { id: 'Tipis', en: 'Squishy' },
+    counteredBy: ['Tameng'],
+  },
+  {
+    name: 'Tameng',
+    roles: ['Tank', 'Support'],
+    weakness: { id: 'Lambat', en: 'Slow' },
+    counteredBy: ['Alfa'],
+  },
+  {
+    name: 'Lama',
+    roles: ['Mage'],
+    weakness: { id: 'Tanpa escape', en: 'No escape' },
+    counteredBy: ['Alfa'],
+  },
 ]
 
 const API: ApiHero[] = [
@@ -15,11 +30,14 @@ const API: ApiHero[] = [
   { name: 'Tanpa Role' },
 ]
 
-const find = (name: string) => mergeHeroes(CURATED, API).find((hero) => hero.name === name)
+const find = (name: string) => mergeHeroes(CURATED, API, 'id').find((hero) => hero.name === name)
 
 describe('mergeHeroes', () => {
   it('mengambil gambar dari API dan kelemahan dari kurasi', () => {
-    expect(find('Alfa')).toMatchObject({ image: 'https://cdn.test/alfa.png', weakness: 'Tipis' })
+    expect(find('Alfa')).toMatchObject({
+      image: 'https://cdn.test/alfa.png',
+      weakness: 'Tipis',
+    })
   })
 
   it('menaruh role API di depan lalu menambah role kurasi tanpa duplikat', () => {
@@ -41,12 +59,17 @@ describe('mergeHeroes', () => {
     expect(find('Baru')).toMatchObject({ roles: ['Marksman'], weakness: undefined })
   })
 
+  it('memakai teks kelemahan sesuai bahasa', () => {
+    const alfa = mergeHeroes(CURATED, API, 'en').find((hero) => hero.name === 'Alfa')
+    expect(alfa?.weakness).toBe('Squishy')
+  })
+
   it('membuang hero tanpa role', () => {
     expect(find('Tanpa Role')).toBeUndefined()
   })
 
   it('berjalan hanya dengan data kurasi bila API kosong', () => {
-    const heroes = mergeHeroes(CURATED, [])
+    const heroes = mergeHeroes(CURATED, [], 'id')
     expect(heroes.map((hero) => hero.name)).toEqual(['Alfa', 'Tameng', 'Lama'])
     expect(heroes.every((hero) => hero.image === undefined)).toBe(true)
   })

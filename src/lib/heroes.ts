@@ -1,4 +1,4 @@
-import type { ApiHero, CuratedHero, Hero, Role } from '@/types'
+import type { ApiHero, CuratedHero, Hero, Locale, Role } from '@/types'
 
 export const MAX_ENEMIES = 5
 
@@ -6,7 +6,8 @@ export const MAX_ENEMIES = 5
 // - Nama, gambar, dan role utama: API. Role kurasi ditambahkan sebagai role sekunder/cadangan.
 // - Counter: kurasi lebih dulu, lalu relasi counter dari API.
 // - Hero yang hanya ada di salah satu sumber tetap ditampilkan selama punya role.
-export const mergeHeroes = (curated: CuratedHero[], api: ApiHero[]): Hero[] => {
+// - Teks kelemahan diambil sesuai `locale`.
+export const mergeHeroes = (curated: CuratedHero[], api: ApiHero[], locale: Locale): Hero[] => {
   const curatedByName = new Map(curated.map((hero) => [hero.name, hero]))
   const apiByName = new Map(api.map((hero) => [hero.name, hero]))
 
@@ -35,7 +36,7 @@ export const mergeHeroes = (curated: CuratedHero[], api: ApiHero[]): Hero[] => {
   return [...roles.entries()].map(([name, heroRoles]) => ({
     name,
     roles: heroRoles,
-    weakness: curatedByName.get(name)?.weakness,
+    weakness: curatedByName.get(name)?.weakness[locale],
     counteredBy: [...(counteredBy.get(name) ?? [])],
     image: apiByName.get(name)?.image,
   }))

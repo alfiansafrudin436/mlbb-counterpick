@@ -1,0 +1,28 @@
+{
+  "site": {
+    "tagline": "Rekomendasi hero counter",
+    "description": "Pilih hero musuh, lalu lihat hero Mobile Legends yang paling cocok untuk melawannya.",
+    "language": "Bahasa",
+    "footer": "Nama, role, dan gambar hero diambil dari API Mobile Legends. Data counter dikurasi manual dan bisa berubah mengikuti patch. Proyek penggemar, tidak berafiliasi dengan Moonton."
+  },
+  "picker": {
+    "enemyTeam": "Tim musuh",
+    "reset": "Reset",
+    "emptySlot": "Kosong",
+    "removeEnemy": "Hapus {name} dari musuh",
+    "searchPlaceholder": "Cari hero…",
+    "searchLabel": "Cari hero",
+    "allRoles": "Semua",
+    "enemyRoleFilter": "Filter role hero musuh",
+    "noHeroFound": "Hero tidak ditemukan.",
+    "recommendations": "Rekomendasi pick",
+    "recommendationRoleFilter": "Filter role rekomendasi",
+    "pickEnemyFirst": "Pilih minimal satu hero musuh untuk melihat rekomendasi.",
+    "noRecommendation": "Belum ada rekomendasi untuk kombinasi dan role ini.",
+    "bestPick": "Pilihan terbaik",
+    "counterScore": "Counter {count}/{total} musuh",
+    "versus": "vs {name}",
+    "caution": "Hati-hati:",
+    "counteredBy": "di-counter {names}"
+  }
+}

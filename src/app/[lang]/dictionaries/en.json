@@ -1,0 +1,28 @@
+{
+  "site": {
+    "tagline": "Counter hero recommendations",
+    "description": "Pick the enemy heroes, then see which Mobile Legends heroes counter them best.",
+    "language": "Language",
+    "footer": "Hero names, roles, and portraits come from the Mobile Legends API. Counter data is curated by hand and may change with each patch. Fan project, not affiliated with Moonton."
+  },
+  "picker": {
+    "enemyTeam": "Enemy team",
+    "reset": "Reset",
+    "emptySlot": "Empty",
+    "removeEnemy": "Remove {name} from the enemy team",
+    "searchPlaceholder": "Search heroes…",
+    "searchLabel": "Search heroes",
+    "allRoles": "All",
+    "enemyRoleFilter": "Filter enemy heroes by role",
+    "noHeroFound": "No heroes found.",
+    "recommendations": "Recommended picks",
+    "recommendationRoleFilter": "Filter recommendations by role",
+    "pickEnemyFirst": "Pick at least one enemy hero to see recommendations.",
+    "noRecommendation": "No recommendations for this combination and role yet.",
+    "bestPick": "Best pick",
+    "counterScore": "Counters {count}/{total} enemies",
+    "versus": "vs {name}",
+    "caution": "Watch out:",
+    "counteredBy": "countered by {names}"
+  }
+}

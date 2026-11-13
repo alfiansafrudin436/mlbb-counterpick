@@ -7,11 +7,12 @@ type HeroGridProps = {
   selected: string[]
   isFull: boolean
   onToggle: (name: string) => void
+  emptyText: string
 }
 
-export const HeroGrid = ({ heroes, selected, isFull, onToggle }: HeroGridProps) => {
+export const HeroGrid = ({ heroes, selected, isFull, onToggle, emptyText }: HeroGridProps) => {
   if (!heroes.length) {
-    return <p className="px-3 py-10 text-center text-muted-foreground">Hero tidak ditemukan.</p>
+    return <p className="px-3 py-10 text-center text-muted-foreground">{emptyText}</p>
   }
 
   return (

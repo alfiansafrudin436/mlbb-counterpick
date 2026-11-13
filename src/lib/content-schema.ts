@@ -3,11 +3,17 @@ import { ROLES } from '@/lib/roles'
 
 export const roleSchema = z.enum(ROLES)
 
+// Teks per bahasa; setiap bahasa di LOCALES wajib diisi.
+export const localizedTextSchema = z.strictObject({
+  id: z.string().min(1),
+  en: z.string().min(1),
+})
+
 // Satu entri di content/heroes.yaml.
 export const curatedHeroSchema = z.strictObject({
   name: z.string().min(1),
   roles: z.array(roleSchema).min(1),
-  weakness: z.string().min(1),
+  weakness: localizedTextSchema,
   counteredBy: z.array(z.string().min(1)).min(1),
 })
 

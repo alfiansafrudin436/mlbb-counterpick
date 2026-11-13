@@ -1,5 +1,6 @@
 export { Footer } from './Footer'
 export { Header } from './Header'
 export { HeroAvatar } from './HeroAvatar'
+export { LanguageSwitcher } from './LanguageSwitcher'
 export { Panel } from './Panel'
 export { RoleChips } from './RoleChips'

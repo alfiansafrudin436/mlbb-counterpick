@@ -1,11 +1,13 @@
 import { CrownIcon, SwordsIcon, TriangleAlertIcon } from 'lucide-react'
 import { HeroAvatar } from '@/components'
+import { format } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
-import type { Recommendation } from '@/types'
+import type { PickerDictionary, Recommendation } from '@/types'
 
 type RecommendationListProps = {
   enemyCount: number
   recommendations: Recommendation[]
+  dict: PickerDictionary
 }
 
 const MAX_BEST_PICKS = 3
@@ -23,13 +25,17 @@ const EmptyMessage = ({ children }: EmptyMessageProps) => {
   )
 }
 
-export const RecommendationList = ({ enemyCount, recommendations }: RecommendationListProps) => {
+export const RecommendationList = ({
+  enemyCount,
+  recommendations,
+  dict,
+}: RecommendationListProps) => {
   if (!enemyCount) {
-    return <EmptyMessage>Pilih minimal satu hero musuh untuk melihat rekomendasi.</EmptyMessage>
+    return <EmptyMessage>{dict.pickEnemyFirst}</EmptyMessage>
   }
 
   if (!recommendations.length) {
-    return <EmptyMessage>Belum ada rekomendasi untuk kombinasi dan role ini.</EmptyMessage>
+    return <EmptyMessage>{dict.noRecommendation}</EmptyMessage>
   }
 
   // Sorotan emas hanya bermakna bila pemenangnya sedikit; saat banyak yang seri, tidak ada yang disorot.
@@ -73,7 +79,7 @@ export const RecommendationList = ({ enemyCount, recommendations }: Recommendati
                   <span className="text-xs text-muted-foreground">{hero.roles.join(' / ')}</span>
                   {isBest && (
                     <span className="rounded-sm bg-primary px-1.5 py-0.5 font-display text-[11px] leading-none font-bold tracking-wider text-primary-foreground uppercase">
-                      Pilihan terbaik
+                      {dict.bestPick}
                     </span>
                   )}
                 </div>
@@ -91,14 +97,16 @@ export const RecommendationList = ({ enemyCount, recommendations }: Recommendati
                     ))}
                   </div>
                   <span className="text-xs font-semibold whitespace-nowrap text-success">
-                    Counter {counters.length}/{enemyCount} musuh
+                    {format(dict.counterScore, { count: counters.length, total: enemyCount })}
                   </span>
                 </div>
 
                 <ul className="mt-2 flex flex-col gap-1 text-[13px] wrap-anywhere text-muted-foreground">
                   {counters.map((enemy) => (
                     <li key={enemy.name}>
-                      <span className="font-semibold text-foreground">vs {enemy.name}</span>
+                      <span className="font-semibold text-foreground">
+                        {format(dict.versus, { name: enemy.name })}
+                      </span>
                       {enemy.weakness && ` — ${enemy.weakness}`}
                     </li>
                   ))}
@@ -106,8 +114,10 @@ export const RecommendationList = ({ enemyCount, recommendations }: Recommendati
                     <li className="flex items-start gap-1.5 text-danger">
                       <TriangleAlertIcon aria-hidden className="mt-0.5 size-3.5 shrink-0" />
                       <span>
-                        <span className="font-semibold">Hati-hati:</span> di-counter{' '}
-                        {threats.map((enemy) => enemy.name).join(', ')}
+                        <span className="font-semibold">{dict.caution}</span>{' '}
+                        {format(dict.counteredBy, {
+                          names: threats.map((enemy) => enemy.name).join(', '),
+                        })}
                       </span>
                     </li>
                   )}

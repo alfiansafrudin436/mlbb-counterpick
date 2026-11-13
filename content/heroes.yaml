@@ -3,509 +3,755 @@
 #
 # name        harus sama persis dengan nama hero di API
 # roles       role hero (dipakai sebagai cadangan dan role tambahan)
-# weakness    alasan singkat kenapa hero ini bisa di-counter
+# weakness    alasan singkat kenapa hero ini bisa di-counter, per bahasa (id, en)
 # counteredBy hero yang meng-counter hero ini (harus ada di file ini)
 
 # ── Tank ──
 - name: Tigreal
   roles: [Tank]
-  weakness: Set-up lambat, mudah dibatalkan atau dilepas
+  weakness:
+    id: Set-up lambat, mudah dibatalkan atau dilepas
+    en: Slow set-up that is easy to cancel or cleanse
   counteredBy: [Diggie, Valir, Karrie, Lunox]
 - name: Franco
   roles: [Tank]
-  weakness: Bergantung pada hook; suppress bisa dilepas
+  weakness:
+    id: Bergantung pada hook; suppress bisa dilepas
+    en: Relies on landing the hook; the suppress can be cleansed
   counteredBy: [Diggie, Karrie, Akai, Valir]
 - name: Khufra
   roles: [Tank]
-  weakness: Kalah oleh damage anti-tank dan anti-CC
+  weakness:
+    id: Kalah oleh damage anti-tank dan anti-CC
+    en: Loses to anti-tank damage and anti-CC
   counteredBy: [Diggie, Valir, Karrie, Lunox]
 - name: Atlas
   roles: [Tank]
-  weakness: Ultimate bisa dibatalkan atau dinetralkan
+  weakness:
+    id: Ultimate bisa dibatalkan atau dinetralkan
+    en: Ultimate can be cancelled or neutralised
   counteredBy: [Diggie, Valir, Karrie, Franco, Kaja]
 - name: Akai
   roles: [Tank]
-  weakness: Ultimate mudah dinetralkan, lemah ke damage % HP
+  weakness:
+    id: Ultimate mudah dinetralkan, lemah ke damage % HP
+    en: Ultimate is easy to neutralise; weak to % HP damage
   counteredBy: [Karrie, Diggie, Valir, Lunox]
 - name: Johnson
   roles: [Tank]
-  weakness: Tabrakan mudah diantisipasi, HP tebal jadi sasaran anti-tank
+  weakness:
+    id: Tabrakan mudah diantisipasi, HP tebal jadi sasaran anti-tank
+    en: The crash is easy to see coming; a big HP pool feeds anti-tank damage
   counteredBy: [Diggie, Karrie, Dyrroth, Valir]
 - name: Gatotkaca
   roles: [Tank]
-  weakness: Lambat dan rentan damage % HP
+  weakness:
+    id: Lambat dan rentan damage % HP
+    en: Slow and vulnerable to % HP damage
   counteredBy: [Karrie, Lunox, Dyrroth, Valir]
 - name: Uranus
   roles: [Tank]
-  weakness: Sangat bergantung pada regenerasi HP
+  weakness:
+    id: Sangat bergantung pada regenerasi HP
+    en: Depends heavily on HP regeneration
   counteredBy: [Baxia, Karrie, Lunox, Dyrroth]
 - name: Hylos
   roles: [Tank]
-  weakness: HP besar tanpa escape, sasaran empuk anti-tank
+  weakness:
+    id: HP besar tanpa escape, sasaran empuk anti-tank
+    en: Huge HP with no escape, an easy target for anti-tank heroes
   counteredBy: [Karrie, Baxia, Lunox, Dyrroth]
 - name: Grock
   roles: [Tank]
-  weakness: Lemah jauh dari tembok dan ke damage % HP
+  weakness:
+    id: Lemah jauh dari tembok dan ke damage % HP
+    en: Weak away from walls and against % HP damage
   counteredBy: [Karrie, Lunox, Valir, Diggie]
 - name: Minotaur
   roles: [Tank, Support]
-  weakness: Butuh waktu isi rage, CC bisa dilepas
+  weakness:
+    id: Butuh waktu isi rage, CC bisa dilepas
+    en: Needs time to build rage; his CC can be cleansed
   counteredBy: [Diggie, Karrie, Valir, Lunox]
 - name: Lolita
   roles: [Tank, Support]
-  weakness: Perisai hanya menahan proyektil
+  weakness:
+    id: Perisai hanya menahan proyektil
+    en: Her shield only blocks projectiles
   counteredBy: [Esmeralda, Yu Zhong, Lunox, Valir]
 - name: Belerick
   roles: [Tank]
-  weakness: Lambat, rentan damage % HP dan anti-heal
+  weakness:
+    id: Lambat, rentan damage % HP dan anti-heal
+    en: Slow, vulnerable to % HP damage and anti-heal
   counteredBy: [Karrie, Lunox, Baxia, Dyrroth]
 - name: Baxia
   roles: [Tank]
-  weakness: Mudah dihentikan CC dan damage anti-tank
+  weakness:
+    id: Mudah dihentikan CC dan damage anti-tank
+    en: Easily stopped by CC and anti-tank damage
   counteredBy: [Karrie, Valir, Lunox, Minsitthar]
 - name: Barats
   roles: [Tank, Fighter]
-  weakness: Kehilangan stack bila di-kite
+  weakness:
+    id: Kehilangan stack bila di-kite
+    en: Loses stacks when kited
   counteredBy: [Karrie, Valir, Baxia, Lunox]
 - name: Fredrinn
   roles: [Tank, Fighter]
-  weakness: Bergantung pada combo jarak dekat dan regen
+  weakness:
+    id: Bergantung pada combo jarak dekat dan regen
+    en: Relies on close-range combos and regeneration
   counteredBy: [Karrie, Baxia, Valir, Lunox]
 - name: Edith
   roles: [Tank, Marksman]
-  weakness: Lemah sebelum ultimate, rentan anti-tank
+  weakness:
+    id: Lemah sebelum ultimate, rentan anti-tank
+    en: Weak before her ultimate and vulnerable to anti-tank damage
   counteredBy: [Karrie, Valir, Lunox, Dyrroth]
 - name: Gloo
   roles: [Tank]
-  weakness: Bergantung regen saat menempel musuh
+  weakness:
+    id: Bergantung regen saat menempel musuh
+    en: Relies on regeneration while attached to an enemy
   counteredBy: [Karrie, Baxia, Valir, Lunox]
 
 # ── Fighter ──
 - name: Chou
   roles: [Fighter]
-  weakness: Mengandalkan dash beruntun
+  weakness:
+    id: Mengandalkan dash beruntun
+    en: Relies on chained dashes
   counteredBy: [Khufra, Minsitthar, Phoveus, Kaja]
 - name: Yu Zhong
   roles: [Fighter]
-  weakness: Sustain dari lifesteal mudah dipotong anti-heal
+  weakness:
+    id: Sustain dari lifesteal mudah dipotong anti-heal
+    en: Lifesteal sustain is easily cut by anti-heal
   counteredBy: [Baxia, Karrie, Valir, Dyrroth]
 - name: Paquito
   roles: [Fighter]
-  weakness: Combo dash mudah dipatahkan
+  weakness:
+    id: Combo dash mudah dipatahkan
+    en: Dash combos are easy to interrupt
   counteredBy: [Khufra, Minsitthar, Phoveus, Valir]
 - name: Esmeralda
   roles: [Fighter, Mage]
-  weakness: Bergantung pada shield dan harus menempel
+  weakness:
+    id: Bergantung pada shield dan harus menempel
+    en: Depends on shields and has to stay in melee range
   counteredBy: [Baxia, Karrie, Dyrroth, Valir]
 - name: Thamuz
   roles: [Fighter]
-  weakness: Hidup dari lifesteal, mudah di-kite
+  weakness:
+    id: Hidup dari lifesteal, mudah di-kite
+    en: Lives off lifesteal and is easy to kite
   counteredBy: [Baxia, Valir, Karrie, Esmeralda]
 - name: Alucard
   roles: [Fighter, Assassin]
-  weakness: Tanpa lifesteal dan saat kena CC langsung tumbang
+  weakness:
+    id: Tanpa lifesteal dan saat kena CC langsung tumbang
+    en: Falls over without lifesteal or once hit by CC
   counteredBy: [Baxia, Khufra, Kaja, Valir]
 - name: Zilong
   roles: [Fighter, Assassin]
-  weakness: Tipis dan mudah dikunci CC
+  weakness:
+    id: Tipis dan mudah dikunci CC
+    en: Squishy and easy to lock down with CC
   counteredBy: [Khufra, Kaja, Saber, Belerick]
 - name: Sun
   roles: [Fighter]
-  weakness: Klon cepat habis oleh damage area
+  weakness:
+    id: Klon cepat habis oleh damage area
+    en: Clones die quickly to area damage
   counteredBy: [Baxia, Thamuz, Vexana, Valir]
 - name: Balmond
   roles: [Fighter]
-  weakness: Regen besar tapi tanpa escape
+  weakness:
+    id: Regen besar tapi tanpa escape
+    en: Big regeneration but no escape
   counteredBy: [Baxia, Karrie, Valir, Dyrroth]
 - name: Alpha
   roles: [Fighter]
-  weakness: Mengandalkan lifesteal, lemah di-kite
+  weakness:
+    id: Mengandalkan lifesteal, lemah di-kite
+    en: Relies on lifesteal and is weak when kited
   counteredBy: [Baxia, Valir, Karrie, Dyrroth]
 - name: Ruby
   roles: [Fighter]
-  weakness: Hidup dari spell vamp dan CC
+  weakness:
+    id: Hidup dari spell vamp dan CC
+    en: Lives off spell vamp and CC
   counteredBy: [Baxia, Karrie, Valir, Diggie]
 - name: Lapu-Lapu
   roles: [Fighter]
-  weakness: Harus masuk ke tengah, rentan di-kite
+  weakness:
+    id: Harus masuk ke tengah, rentan di-kite
+    en: Has to dive into the middle and is vulnerable to kiting
   counteredBy: [Karrie, Valir, Baxia, Esmeralda]
 - name: Dyrroth
   roles: [Fighter]
-  weakness: Tipis untuk ukuran fighter, mudah dikunci
+  weakness:
+    id: Tipis untuk ukuran fighter, mudah dikunci
+    en: Squishy for a fighter and easy to lock down
   counteredBy: [Chou, Khufra, Valir, Akai]
 - name: Martis
   roles: [Fighter]
-  weakness: Butuh dash untuk menempel
+  weakness:
+    id: Butuh dash untuk menempel
+    en: Needs his dashes to stick to targets
   counteredBy: [Khufra, Minsitthar, Kaja, Chou]
 - name: Guinevere
   roles: [Fighter]
-  weakness: Combo lompat mudah dibatalkan atau dilepas
+  weakness:
+    id: Combo lompat mudah dibatalkan atau dilepas
+    en: Jump combo is easy to cancel or cleanse
   counteredBy: [Khufra, Minsitthar, Kaja, Diggie]
 - name: Badang
   roles: [Fighter]
-  weakness: Combo tembok bisa dilepas atau didorong
+  weakness:
+    id: Combo tembok bisa dilepas atau didorong
+    en: Wall combo can be cleansed or pushed away
   counteredBy: [Diggie, Valir, Chou, Kaja]
 - name: Jawhead
   roles: [Fighter]
-  weakness: Lemparan bisa dilawan, rentan di-kite
+  weakness:
+    id: Lemparan bisa dilawan, rentan di-kite
+    en: His throw can be countered; vulnerable to kiting
   counteredBy: [Diggie, Valir, Chou, Karrie]
 - name: Silvanna
   roles: [Fighter]
-  weakness: Ultimate bisa dilepas atau didorong keluar
+  weakness:
+    id: Ultimate bisa dilepas atau didorong keluar
+    en: Ultimate can be cleansed or the target pushed out
   counteredBy: [Diggie, Valir, Chou, Kaja]
 - name: Masha
   roles: [Fighter]
-  weakness: HP berlapis rentan damage % HP
+  weakness:
+    id: HP berlapis rentan damage % HP
+    en: Layered HP bars are vulnerable to % HP damage
   counteredBy: [Karrie, Valir, Baxia, Chou]
 - name: Khaleed
   roles: [Fighter]
-  weakness: Regen saat diam mudah diganggu
+  weakness:
+    id: Regen saat diam mudah diganggu
+    en: Regeneration while standing still is easy to disrupt
   counteredBy: [Baxia, Valir, Khufra, Karrie]
 - name: Aulus
   roles: [Fighter]
-  weakness: Tanpa dash, mudah di-kite
+  weakness:
+    id: Tanpa dash, mudah di-kite
+    en: No dash, so he is easy to kite
   counteredBy: [Valir, Chou, Khufra, Karrie]
 - name: Argus
   roles: [Fighter]
-  weakness: Ultimate bisa dihabiskan dengan CC dan kite
+  weakness:
+    id: Ultimate bisa dihabiskan dengan CC dan kite
+    en: Ultimate can be waited out with CC and kiting
   counteredBy: [Valir, Chou, Khufra, Kaja]
 - name: Aldous
   roles: [Fighter]
-  weakness: Lemah di early, mudah dihentikan setelah mendarat
+  weakness:
+    id: Lemah di early, mudah dihentikan setelah mendarat
+    en: Weak early and easy to stop after he lands
   counteredBy: [Chou, Khufra, Valir, Karrie]
 - name: Leomord
   roles: [Fighter]
-  weakness: Mengandalkan dash saat berkuda
+  weakness:
+    id: Mengandalkan dash saat berkuda
+    en: Relies on dashes while mounted
   counteredBy: [Khufra, Minsitthar, Chou, Valir]
 - name: X.Borg
   roles: [Fighter]
-  weakness: Armor habis lalu sangat rapuh
+  weakness:
+    id: Armor habis lalu sangat rapuh
+    en: Very fragile once his armour is gone
   counteredBy: [Baxia, Valir, Chou, Karrie]
 - name: Terizla
   roles: [Fighter]
-  weakness: Lambat dan mudah di-kite
+  weakness:
+    id: Lambat dan mudah di-kite
+    en: Slow and easy to kite
   counteredBy: [Karrie, Valir, Diggie, Lunox]
 - name: Phoveus
   roles: [Fighter]
-  weakness: Tidak berguna melawan hero tanpa dash
+  weakness:
+    id: Tidak berguna melawan hero tanpa dash
+    en: Useless against heroes without dashes
   counteredBy: [Karrie, Valir, Lunox, Dyrroth]
 - name: Arlott
   roles: [Fighter, Assassin]
-  weakness: Dash beruntun mudah dipotong
+  weakness:
+    id: Dash beruntun mudah dipotong
+    en: Chained dashes are easy to cut short
   counteredBy: [Khufra, Minsitthar, Phoveus, Kaja]
 - name: Cici
   roles: [Fighter]
-  weakness: Mobilitas tinggi tapi mengandalkan lompatan
+  weakness:
+    id: Mobilitas tinggi tapi mengandalkan lompatan
+    en: Highly mobile but relies on jumps
   counteredBy: [Khufra, Minsitthar, Phoveus, Baxia]
 - name: Freya
   roles: [Fighter]
-  weakness: Lompatan dan shield mudah dihentikan
+  weakness:
+    id: Lompatan dan shield mudah dihentikan
+    en: Her leap and shields are easy to stop
   counteredBy: [Valir, Khufra, Chou, Baxia]
 - name: Minsitthar
   roles: [Fighter]
-  weakness: Lambat tanpa escape, rentan di-kite
+  weakness:
+    id: Lambat tanpa escape, rentan di-kite
+    en: Slow with no escape and vulnerable to kiting
   counteredBy: [Karrie, Valir, Lunox, Diggie]
 - name: Bane
   roles: [Fighter, Mage]
-  weakness: Tipis dan lambat, mudah diculik
+  weakness:
+    id: Tipis dan lambat, mudah diculik
+    en: Squishy and slow, easy to pick off
   counteredBy: [Lancelot, Hayabusa, Chou, Saber]
 - name: Hilda
   roles: [Fighter, Tank]
-  weakness: Kuat hanya di semak, rentan anti-tank
+  weakness:
+    id: Kuat hanya di semak, rentan anti-tank
+    en: Only strong in bushes; vulnerable to anti-tank damage
   counteredBy: [Karrie, Baxia, Valir, Dyrroth]
 - name: Roger
   roles: [Fighter, Marksman]
-  weakness: Tipis saat dikunci CC
+  weakness:
+    id: Tipis saat dikunci CC
+    en: Squishy once locked down by CC
   counteredBy: [Khufra, Chou, Kaja, Saber]
 - name: Julian
   roles: [Fighter, Mage]
-  weakness: Combo dash mudah dipotong
+  weakness:
+    id: Combo dash mudah dipotong
+    en: Dash combos are easy to cut short
   counteredBy: [Khufra, Chou, Kaja, Minsitthar]
 
 # ── Assassin ──
 - name: Fanny
   roles: [Assassin]
-  weakness: Kabel terhenti oleh CC instan, boros energi
+  weakness:
+    id: Kabel terhenti oleh CC instan, boros energi
+    en: Cables are stopped by instant CC, and she burns through energy
   counteredBy: [Khufra, Saber, Kaja, Franco, Minsitthar, Chou]
 - name: Ling
   roles: [Assassin]
-  weakness: Tipis, mati bila dikunci saat turun dari tembok
+  weakness:
+    id: Tipis, mati bila dikunci saat turun dari tembok
+    en: Squishy; dies if locked down as he drops from a wall
   counteredBy: [Khufra, Saber, Kaja, Phoveus, Minsitthar]
 - name: Lancelot
   roles: [Assassin]
-  weakness: Mengandalkan dash dan immune singkat
+  weakness:
+    id: Mengandalkan dash dan immune singkat
+    en: Relies on dashes and brief immunity
   counteredBy: [Khufra, Saber, Kaja, Minsitthar, Phoveus]
 - name: Hayabusa
   roles: [Assassin]
-  weakness: Tipis, mudah dikunci setelah ultimate
+  weakness:
+    id: Tipis, mudah dikunci setelah ultimate
+    en: Squishy and easy to lock down after his ultimate
   counteredBy: [Saber, Kaja, Khufra, Chou]
 - name: Gusion
   roles: [Assassin, Mage]
-  weakness: Combo dash butuh ruang gerak
+  weakness:
+    id: Combo dash butuh ruang gerak
+    en: Dash combo needs room to move
   counteredBy: [Khufra, Minsitthar, Kaja, Saber, Chou]
 - name: Benedetta
   roles: [Assassin, Fighter]
-  weakness: Seluruh kit berbasis dash
+  weakness:
+    id: Seluruh kit berbasis dash
+    en: Her whole kit is built on dashes
   counteredBy: [Khufra, Minsitthar, Phoveus, Kaja]
 - name: Aamon
   roles: [Assassin]
-  weakness: Tipis, lemah bila dikunci saat terlihat
+  weakness:
+    id: Tipis, lemah bila dikunci saat terlihat
+    en: Squishy and weak when locked down while visible
   counteredBy: [Saber, Kaja, Khufra, Chou]
 - name: Natalia
   roles: [Assassin]
-  weakness: Tidak berdaya bila posisinya terungkap
+  weakness:
+    id: Tidak berdaya bila posisinya terungkap
+    en: Helpless once her position is revealed
   counteredBy: [Rafaela, Chou, Saber, Popol and Kupa]
 - name: Helcurt
   roles: [Assassin]
-  weakness: Tipis dan harus menempel
+  weakness:
+    id: Tipis dan harus menempel
+    en: Squishy and has to stay in melee range
   counteredBy: [Saber, Kaja, Chou, Khufra]
 - name: Karina
   roles: [Assassin, Mage]
-  weakness: Harus masuk jarak dekat untuk reset
+  weakness:
+    id: Harus masuk jarak dekat untuk reset
+    en: Has to get into melee range to reset
   counteredBy: [Saber, Kaja, Chou, Khufra]
 - name: Selena
   roles: [Assassin, Mage]
-  weakness: Bergantung pada panah stun
+  weakness:
+    id: Bergantung pada panah stun
+    en: Depends on landing her stun arrow
   counteredBy: [Diggie, Lancelot, Hayabusa, Chou]
 - name: Saber
   roles: [Assassin]
-  weakness: Hanya kuat melawan target tipis
+  weakness:
+    id: Hanya kuat melawan target tipis
+    en: Only strong against squishy targets
   counteredBy: [Gatotkaca, Belerick, Khufra, Akai]
 - name: Joy
   roles: [Assassin]
-  weakness: Dash berirama mudah dipatahkan
+  weakness:
+    id: Dash berirama mudah dipatahkan
+    en: Rhythm dashes are easy to break
   counteredBy: [Khufra, Minsitthar, Phoveus, Kaja]
 - name: Nolan
   roles: [Assassin]
-  weakness: Tipis dan mengandalkan dash
+  weakness:
+    id: Tipis dan mengandalkan dash
+    en: Squishy and reliant on dashes
   counteredBy: [Khufra, Saber, Kaja, Minsitthar]
 - name: Harley
   roles: [Assassin, Mage]
-  weakness: Tipis, mudah dikejar setelah burst gagal
+  weakness:
+    id: Tipis, mudah dikejar setelah burst gagal
+    en: Squishy and easy to chase down after a failed burst
   counteredBy: [Saber, Chou, Kaja, Hayabusa]
 - name: Hanzo
   roles: [Assassin]
-  weakness: Tubuh asli tak terjaga saat ultimate
+  weakness:
+    id: Tubuh asli tak terjaga saat ultimate
+    en: His real body is unguarded during the ultimate
   counteredBy: [Hayabusa, Lancelot, Natalia, Saber]
 - name: Yi Sun-shin
   roles: [Assassin, Marksman]
-  weakness: Tipis tanpa escape yang kuat
+  weakness:
+    id: Tipis tanpa escape yang kuat
+    en: Squishy with no strong escape
   counteredBy: [Saber, Hayabusa, Lancelot, Natalia]
 
 # ── Mage ──
 - name: Kagura
   roles: [Mage]
-  weakness: Tipis saat payung sedang cooldown
+  weakness:
+    id: Tipis saat payung sedang cooldown
+    en: Squishy while her umbrella is on cooldown
   counteredBy: [Lancelot, Hayabusa, Saber, Helcurt, Chou]
 - name: Lunox
   roles: [Mage]
-  weakness: Tipis, mudah diculik sebelum ultimate
+  weakness:
+    id: Tipis, mudah diculik sebelum ultimate
+    en: Squishy and easy to pick off before her ultimate
   counteredBy: [Saber, Hayabusa, Chou, Kaja, Franco]
 - name: Pharsa
   roles: [Mage]
-  weakness: Diam di tempat saat ultimate
+  weakness:
+    id: Diam di tempat saat ultimate
+    en: Stands still while channelling her ultimate
   counteredBy: [Lancelot, Hayabusa, Fanny, Ling, Saber]
 - name: Yve
   roles: [Mage]
-  weakness: Diam saat ultimate, mudah di-interrupt
+  weakness:
+    id: Diam saat ultimate, mudah di-interrupt
+    en: Stands still during her ultimate and is easy to interrupt
   counteredBy: [Lancelot, Fanny, Ling, Chou, Franco]
 - name: Valir
   roles: [Mage]
-  weakness: Kalah jarak dan kalah oleh assassin lincah
+  weakness:
+    id: Kalah jarak dan kalah oleh assassin lincah
+    en: Outranged and beaten by agile assassins
   counteredBy: [Lancelot, Hayabusa, Ling, Pharsa]
 - name: Vale
   roles: [Mage]
-  weakness: Tanpa escape, combo lambat
+  weakness:
+    id: Tanpa escape, combo lambat
+    en: No escape and a slow combo
   counteredBy: [Lancelot, Hayabusa, Fanny, Ling]
 - name: Eudora
   roles: [Mage]
-  weakness: Jarak pendek dan mengandalkan stun
+  weakness:
+    id: Jarak pendek dan mengandalkan stun
+    en: Short range and reliant on her stun
   counteredBy: [Lancelot, Hayabusa, Diggie, Chou]
 - name: Aurora
   roles: [Mage]
-  weakness: Bergantung pada freeze, tanpa escape
+  weakness:
+    id: Bergantung pada freeze, tanpa escape
+    en: Depends on her freeze and has no escape
   counteredBy: [Diggie, Lancelot, Hayabusa, Helcurt]
 - name: Cecilion
   roles: [Mage]
-  weakness: Lemah di early dan sangat tipis
+  weakness:
+    id: Lemah di early dan sangat tipis
+    en: Weak early and very squishy
   counteredBy: [Lancelot, Hayabusa, Fanny, Ling, Saber]
 - name: Xavier
   roles: [Mage]
-  weakness: Tanpa escape
+  weakness:
+    id: Tanpa escape
+    en: No escape
   counteredBy: [Lancelot, Fanny, Ling, Hayabusa]
 - name: Lylia
   roles: [Mage]
-  weakness: Tipis saat ultimate cooldown
+  weakness:
+    id: Tipis saat ultimate cooldown
+    en: Squishy while her ultimate is on cooldown
   counteredBy: [Saber, Hayabusa, Kaja, Helcurt]
 - name: Harith
   roles: [Mage]
-  weakness: Mengandalkan dash di dalam zona
+  weakness:
+    id: Mengandalkan dash di dalam zona
+    en: Relies on dashing inside his zone
   counteredBy: [Khufra, Minsitthar, Phoveus, Saber, Kaja]
 - name: Chang'e
   roles: [Mage]
-  weakness: Diam saat ultimate, proyektil bisa ditahan
+  weakness:
+    id: Diam saat ultimate, proyektil bisa ditahan
+    en: Stands still during her ultimate; her projectiles can be blocked
   counteredBy: [Lancelot, Hayabusa, Saber, Lolita]
 - name: Odette
   roles: [Mage]
-  weakness: Ultimate mudah di-interrupt
+  weakness:
+    id: Ultimate mudah di-interrupt
+    en: Ultimate is easy to interrupt
   counteredBy: [Chou, Franco, Kaja, Khufra, Tigreal]
 - name: Gord
   roles: [Mage]
-  weakness: Diam saat ultimate, tanpa escape
+  weakness:
+    id: Diam saat ultimate, tanpa escape
+    en: Stands still during his ultimate and has no escape
   counteredBy: [Lancelot, Hayabusa, Fanny, Ling]
 - name: Cyclops
   roles: [Mage]
-  weakness: Jarak pendek, kalah oleh mage jarak jauh
+  weakness:
+    id: Jarak pendek, kalah oleh mage jarak jauh
+    en: Short range; loses to long-range mages
   counteredBy: [Lancelot, Hayabusa, Pharsa, Yve]
 - name: Zhask
   roles: [Mage]
-  weakness: Bergantung pada turret yang bisa di-outrange
+  weakness:
+    id: Bergantung pada turret yang bisa di-outrange
+    en: Depends on a turret that can be outranged
   counteredBy: [Lancelot, Hayabusa, Pharsa, Yve]
 - name: Vexana
   roles: [Mage]
-  weakness: Tanpa escape, skill mudah dihindari
+  weakness:
+    id: Tanpa escape, skill mudah dihindari
+    en: No escape and skills that are easy to dodge
   counteredBy: [Lancelot, Hayabusa, Fanny, Ling]
 - name: Kadita
   roles: [Mage, Assassin]
-  weakness: Combo bisa dilepas, lemah setelah skill habis
+  weakness:
+    id: Combo bisa dilepas, lemah setelah skill habis
+    en: Combo can be cleansed; weak once her skills are spent
   counteredBy: [Diggie, Saber, Kaja, Chou]
 - name: Luo Yi
   roles: [Mage]
-  weakness: CC butuh set-up tanda, tanpa escape
+  weakness:
+    id: CC butuh set-up tanda, tanpa escape
+    en: CC needs mark set-up, and she has no escape
   counteredBy: [Diggie, Lancelot, Hayabusa, Fanny]
 - name: Valentina
   roles: [Mage]
-  weakness: Tipis saat skill cooldown
+  weakness:
+    id: Tipis saat skill cooldown
+    en: Squishy while her skills are on cooldown
   counteredBy: [Saber, Hayabusa, Kaja, Chou]
 - name: Novaria
   roles: [Mage]
-  weakness: Tipis, lemah bila didekati
+  weakness:
+    id: Tipis, lemah bila didekati
+    en: Squishy and weak when dived
   counteredBy: [Lancelot, Hayabusa, Fanny, Ling]
 - name: Zhuxin
   roles: [Mage]
-  weakness: Butuh waktu menumpuk tanda, tanpa escape
+  weakness:
+    id: Butuh waktu menumpuk tanda, tanpa escape
+    en: Needs time to stack marks and has no escape
   counteredBy: [Lancelot, Hayabusa, Diggie, Ling]
 - name: Nana
   roles: [Mage, Support]
-  weakness: Damage rendah, skill mudah dihindari
+  weakness:
+    id: Damage rendah, skill mudah dihindari
+    en: Low damage and skills that are easy to dodge
   counteredBy: [Lancelot, Hayabusa, Fanny, Pharsa]
 - name: Alice
   roles: [Mage, Tank]
-  weakness: Hidup dari regen di tengah musuh
+  weakness:
+    id: Hidup dari regen di tengah musuh
+    en: Lives off regeneration in the middle of the enemy team
   counteredBy: [Baxia, Karrie, Valir, Dyrroth]
 - name: Faramis
   roles: [Mage, Support]
-  weakness: Tipis; efek ultimate bisa ditunggu habis
+  weakness:
+    id: Tipis; efek ultimate bisa ditunggu habis
+    en: Squishy; his ultimate can simply be waited out
   counteredBy: [Lancelot, Hayabusa, Saber, Baxia]
 
 # ── Marksman ──
 - name: Kimmy
   roles: [Marksman, Mage]
-  weakness: Tanpa escape yang andal
+  weakness:
+    id: Tanpa escape yang andal
+    en: No reliable escape
   counteredBy: [Lancelot, Hayabusa, Saber, Natalia]
 - name: Layla
   roles: [Marksman]
-  weakness: Tanpa escape sama sekali
+  weakness:
+    id: Tanpa escape sama sekali
+    en: No escape at all
   counteredBy: [Lancelot, Hayabusa, Saber, Natalia, Fanny]
 - name: Miya
   roles: [Marksman]
-  weakness: Tipis, mudah diculik
+  weakness:
+    id: Tipis, mudah diculik
+    en: Squishy and easy to pick off
   counteredBy: [Saber, Natalia, Lancelot, Hayabusa]
 - name: Hanabi
   roles: [Marksman]
-  weakness: Tanpa dash, lemah bila di-burst
+  weakness:
+    id: Tanpa dash, lemah bila di-burst
+    en: No dash and weak to burst
   counteredBy: [Lancelot, Hayabusa, Natalia, Saber]
 - name: Lesley
   roles: [Marksman, Assassin]
-  weakness: Tipis, lemah bila didekati
+  weakness:
+    id: Tipis, lemah bila didekati
+    en: Squishy and weak when dived
   counteredBy: [Natalia, Lancelot, Hayabusa, Saber]
 - name: Karrie
   roles: [Marksman]
-  weakness: Jarak pendek dan tipis
+  weakness:
+    id: Jarak pendek dan tipis
+    en: Short range and squishy
   counteredBy: [Lancelot, Hayabusa, Saber, Natalia, Pharsa]
 - name: Claude
   roles: [Marksman]
-  weakness: Mengandalkan blink untuk masuk dan keluar
+  weakness:
+    id: Mengandalkan blink untuk masuk dan keluar
+    en: Relies on his blink to get in and out
   counteredBy: [Khufra, Minsitthar, Saber, Kaja, Phoveus]
 - name: Wanwan
   roles: [Marksman]
-  weakness: Selalu melompat; ultimate butuh memecah titik lemah
+  weakness:
+    id: Selalu melompat; ultimate butuh memecah titik lemah
+    en: Always hopping; her ultimate needs every weak point broken
   counteredBy: [Khufra, Minsitthar, Phoveus, Kaja]
 - name: Granger
   roles: [Marksman]
-  weakness: Proyektil bisa ditahan, tipis
+  weakness:
+    id: Proyektil bisa ditahan, tipis
+    en: Projectiles can be blocked, and he is squishy
   counteredBy: [Lancelot, Hayabusa, Saber, Lolita]
 - name: Bruno
   roles: [Marksman]
-  weakness: Tipis, lemah bila di-burst
+  weakness:
+    id: Tipis, lemah bila di-burst
+    en: Squishy and weak to burst
   counteredBy: [Lancelot, Hayabusa, Saber, Natalia]
 - name: Brody
   roles: [Marksman]
-  weakness: Attack speed rendah, proyektil bisa ditahan
+  weakness:
+    id: Attack speed rendah, proyektil bisa ditahan
+    en: Low attack speed; his projectiles can be blocked
   counteredBy: [Lancelot, Hayabusa, Saber, Lolita]
 - name: Beatrix
   roles: [Marksman]
-  weakness: Proyektil bisa ditahan, tipis
+  weakness:
+    id: Proyektil bisa ditahan, tipis
+    en: Projectiles can be blocked, and she is squishy
   counteredBy: [Lancelot, Hayabusa, Lolita, Saber]
 - name: Moskov
   roles: [Marksman]
-  weakness: Tipis dan harus maju untuk damage
+  weakness:
+    id: Tipis dan harus maju untuk damage
+    en: Squishy and has to step forward to deal damage
   counteredBy: [Saber, Kaja, Khufra, Belerick]
 - name: Irithel
   roles: [Marksman]
-  weakness: Tipis, lemah bila dikunci
+  weakness:
+    id: Tipis, lemah bila dikunci
+    en: Squishy and weak when locked down
   counteredBy: [Saber, Lancelot, Hayabusa, Natalia]
 - name: Clint
   roles: [Marksman]
-  weakness: Proyektil bisa ditahan, tipis
+  weakness:
+    id: Proyektil bisa ditahan, tipis
+    en: Projectiles can be blocked, and he is squishy
   counteredBy: [Lancelot, Hayabusa, Saber, Lolita]
 - name: Melissa
   roles: [Marksman]
-  weakness: Perlindungan ultimate tidak menahan serangan jarak jauh
+  weakness:
+    id: Perlindungan ultimate tidak menahan serangan jarak jauh
+    en: Her ultimate barrier does not stop ranged attacks
   counteredBy: [Hayabusa, Lancelot, Pharsa, Yve]
 - name: Natan
   roles: [Marksman]
-  weakness: Tipis, lemah bila di-burst
+  weakness:
+    id: Tipis, lemah bila di-burst
+    en: Squishy and weak to burst
   counteredBy: [Lancelot, Hayabusa, Saber, Natalia]
 - name: Popol and Kupa
   roles: [Marksman]
-  weakness: Lemah bila Kupa mati atau di-outrange
+  weakness:
+    id: Lemah bila Kupa mati atau di-outrange
+    en: Weak once Kupa dies or when outranged
   counteredBy: [Lancelot, Hayabusa, Pharsa, Yve]
 - name: Ixia
   roles: [Marksman]
-  weakness: Diam saat ultimate, tanpa escape
+  weakness:
+    id: Diam saat ultimate, tanpa escape
+    en: Stands still during her ultimate and has no escape
   counteredBy: [Lancelot, Hayabusa, Saber, Natalia]
 
 # ── Support ──
 - name: Angela
   roles: [Support]
-  weakness: Target yang ditempeli bisa dikunci dan dihabisi
+  weakness:
+    id: Target yang ditempeli bisa dikunci dan dihabisi
+    en: The ally she attaches to can be locked down and killed
   counteredBy: [Baxia, Franco, Kaja, Chou]
 - name: Estes
   roles: [Support]
-  weakness: Heal dipotong anti-heal, tanpa escape
+  weakness:
+    id: Heal dipotong anti-heal, tanpa escape
+    en: Healing is cut by anti-heal, and he has no escape
   counteredBy: [Baxia, Saber, Hayabusa, Lancelot]
 - name: Rafaela
   roles: [Support]
-  weakness: Tipis, heal mudah dipotong
+  weakness:
+    id: Tipis, heal mudah dipotong
+    en: Squishy; her healing is easily cut
   counteredBy: [Baxia, Saber, Hayabusa, Lancelot]
 - name: Floryn
   roles: [Support]
-  weakness: Tipis, heal mudah dipotong
+  weakness:
+    id: Tipis, heal mudah dipotong
+    en: Squishy; her healing is easily cut
   counteredBy: [Baxia, Saber, Hayabusa, Lancelot]
 - name: Diggie
   roles: [Support]
-  weakness: Tipis, mudah diculik sebelum pakai ultimate
+  weakness:
+    id: Tipis, mudah diculik sebelum pakai ultimate
+    en: Squishy and easy to pick off before he uses his ultimate
   counteredBy: [Saber, Hayabusa, Lancelot, Natalia]
 - name: Mathilda
   roles: [Support, Assassin]
-  weakness: Mengandalkan dash
+  weakness:
+    id: Mengandalkan dash
+    en: Relies on dashes
   counteredBy: [Khufra, Minsitthar, Saber, Kaja]
 - name: Kaja
   roles: [Support, Fighter]
-  weakness: Suppress bisa dilepas, tipis setelah masuk
+  weakness:
+    id: Suppress bisa dilepas, tipis setelah masuk
+    en: His suppress can be cleansed, and he is squishy after going in
   counteredBy: [Diggie, Karrie, Valir, Lunox]
 - name: Carmilla
   roles: [Support, Tank]
-  weakness: Ultimate bisa dilepas atau dihindari
+  weakness:
+    id: Ultimate bisa dilepas atau dihindari
+    en: Ultimate can be cleansed or dodged
   counteredBy: [Diggie, Valir, Karrie, Lunox]
