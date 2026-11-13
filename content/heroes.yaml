@@ -186,7 +186,7 @@
   weakness:
     id: Tipis dan mudah dikunci CC
     en: Squishy and easy to lock down with CC
-  counteredBy: [Khufra, Kaja, Saber, Belerick]
+  counteredBy: [Khufra, Kaja, Saber, Belerick, Zetian]
 - name: Sun
   roles: [Fighter]
   traits: [heal]
@@ -200,7 +200,7 @@
   weakness:
     id: Regen besar tapi tanpa escape
     en: Big regeneration but no escape
-  counteredBy: [Baxia, Karrie, Valir, Dyrroth]
+  counteredBy: [Baxia, Karrie, Valir, Dyrroth, Zetian]
 - name: Alpha
   roles: [Fighter]
   traits: [heal]
@@ -407,7 +407,7 @@
   weakness:
     id: Combo dash butuh ruang gerak
     en: Dash combo needs room to move
-  counteredBy: [Khufra, Minsitthar, Kaja, Saber, Chou]
+  counteredBy: [Khufra, Minsitthar, Kaja, Saber, Chou, Hirara]
 - name: Benedetta
   roles: [Assassin, Fighter]
   weakness:
@@ -510,7 +510,7 @@
   weakness:
     id: Diam di tempat saat ultimate
     en: Stands still while channelling her ultimate
-  counteredBy: [Lancelot, Hayabusa, Fanny, Ling, Saber]
+  counteredBy: [Lancelot, Hayabusa, Fanny, Ling, Saber, Hirara]
 - name: Yve
   roles: [Mage]
   traits: [cc]
@@ -613,7 +613,7 @@
   weakness:
     id: Tanpa escape, skill mudah dihindari
     en: No escape and skills that are easy to dodge
-  counteredBy: [Lancelot, Hayabusa, Fanny, Ling]
+  counteredBy: [Lancelot, Hayabusa, Fanny, Ling, Marcel]
 - name: Kadita
   roles: [Mage, Assassin]
   traits: [cc, burst, magic]
@@ -684,20 +684,20 @@
   weakness:
     id: Tanpa escape sama sekali
     en: No escape at all
-  counteredBy: [Lancelot, Hayabusa, Saber, Natalia, Fanny]
+  counteredBy: [Lancelot, Hayabusa, Saber, Natalia, Fanny, Marcel, Sora]
 - name: Miya
   roles: [Marksman]
   weakness:
     id: Tipis, mudah diculik
     en: Squishy and easy to pick off
-  counteredBy: [Saber, Natalia, Lancelot, Hayabusa]
+  counteredBy: [Saber, Natalia, Lancelot, Hayabusa, Sora]
 - name: Hanabi
   roles: [Marksman]
   traits: [cc]
   weakness:
     id: Tanpa dash, lemah bila di-burst
     en: No dash and weak to burst
-  counteredBy: [Lancelot, Hayabusa, Natalia, Saber]
+  counteredBy: [Lancelot, Hayabusa, Natalia, Saber, Sora]
 - name: Lesley
   roles: [Marksman, Assassin]
   weakness:
@@ -793,7 +793,7 @@
   weakness:
     id: Diam saat ultimate, tanpa escape
     en: Stands still during her ultimate and has no escape
-  counteredBy: [Lancelot, Hayabusa, Saber, Natalia]
+  counteredBy: [Lancelot, Hayabusa, Saber, Natalia, Hirara]
 
 # ── Support ──
 - name: Angela
@@ -850,3 +850,57 @@
     id: Ultimate bisa dilepas atau dihindari
     en: Ultimate can be cleansed or dodged
   counteredBy: [Diggie, Valir, Karrie, Lunox]
+
+# ── Hero baru (belum ada di API; role dari situs resmi, counter sebagian dari tab Counters resmi) ──
+- name: Suyou
+  roles: [Assassin, Fighter]
+  weakness:
+    id: Mengandalkan dash untuk masuk dan keluar
+    en: Relies on dashes to get in and out
+  counteredBy: [Khufra, Minsitthar, Phoveus, Kaja]
+- name: Lukas
+  roles: [Fighter]
+  traits: [cc]
+  weakness:
+    id: Harus menumpuk stack di jarak dekat, mudah di-kite
+    en: Needs to build stacks in melee and is easy to kite
+  counteredBy: [Valir, Karrie, Baxia, Chou]
+- name: Kalea
+  roles: [Support, Fighter]
+  traits: [heal, cc]
+  weakness:
+    id: Harus maju ke jarak dekat; heal mudah dipotong
+    en: Has to fight up close; her healing is easily cut
+  counteredBy: [Baxia, Valir, Karrie, Diggie]
+- name: Zetian
+  roles: [Mage]
+  weakness:
+    id: Ultimate-nya bisa disalin dan dipakai melawan timnya; lemah bila didekati assassin
+    en: Her ultimate can be copied and turned against her team; weak when dived by assassins
+  counteredBy: [Valentina, Lancelot, Hayabusa, Saber]
+- name: Obsidia
+  roles: [Marksman]
+  weakness:
+    id: Tipis, lemah bila didekati
+    en: Squishy and weak when dived
+  counteredBy: [Lancelot, Hayabusa, Saber, Natalia]
+- name: Sora
+  roles: [Fighter, Assassin]
+  traits: [cc, burst]
+  weakness:
+    id: Harus menyelam ke tengah musuh, rentan dikunci CC
+    en: Has to dive in and is vulnerable to being locked down
+  counteredBy: [Khufra, Kaja, Minsitthar, Valir]
+- name: Marcel
+  roles: [Support]
+  traits: [cc]
+  weakness:
+    id: Tipis; mengandalkan ultimate area yang bisa dihindari hero lincah
+    en: Squishy; relies on an area ultimate that mobile heroes can dodge
+  counteredBy: [Lancelot, Hayabusa, Diggie, Saber]
+- name: Hirara
+  roles: [Assassin]
+  weakness:
+    id: Lincah tapi sangat tipis; langsung mati bila tertangkap burst bertarget
+    en: Nimble but very fragile; dies instantly when caught by targeted burst
+  counteredBy: [Saber, Natalia, Khufra, Kaja]
