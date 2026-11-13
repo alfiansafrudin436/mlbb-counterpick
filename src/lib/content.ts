@@ -1,25 +1,20 @@
 import 'server-only'
 import { cacheLife } from 'next/cache'
-import { loadCuratedHeroes, loadItemCatalog } from '@/lib/content-loader'
-import { fetchApiHeroes } from '@/lib/hero-api'
+import { loadApiHeroes, loadCuratedHeroes, loadItemCatalog } from '@/lib/content-loader'
 import { buildItemIcons, mergeHeroes } from '@/lib/heroes'
 import { createItemNormalizer } from '@/lib/items'
 import type { Hero, Locale } from '@/types'
 
-// Sumber data di-cache sekali untuk semua bahasa (API tidak dipanggil ulang per bahasa).
-// Hasil normal di-cache sehari; bila API gagal, hanya di-cache sebentar agar segera dicoba lagi.
+// Semua sumber adalah file di folder `content/` (termasuk salinan data API), jadi hasilnya
+// statis: di-cache permanen dan ikut ter-prerender saat build. Tidak ada panggilan jaringan.
 const loadSources = async () => {
   'use cache'
   const [curated, items, api] = await Promise.all([
     loadCuratedHeroes(),
     loadItemCatalog(),
-    fetchApiHeroes(),
+    loadApiHeroes(),
   ])
-  if (api.length) {
-    cacheLife('days')
-  } else {
-    cacheLife('minutes')
-  }
+  cacheLife('max')
   return { curated, items, api }
 }
 

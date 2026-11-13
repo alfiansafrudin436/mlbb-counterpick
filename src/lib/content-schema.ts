@@ -30,17 +30,7 @@ export const itemsFileSchema = z.strictObject({
   aliases: z.record(z.string().min(1), z.string().min(1)).optional(),
 })
 
-// Respons API Mobile Legends — hanya field yang dipakai, sisanya diabaikan.
-export const apiHeroListSchema = z.object({
-  data: z.array(
-    z.object({
-      name: z.string().min(1),
-      heroid: z.string().min(1),
-      key: z.string().optional(),
-    }),
-  ),
-})
-
+// Bentuk detail hero dari API Mobile Legends — hanya field yang dipakai.
 // Hero baru sering belum punya relasi counter: API mengisinya dengan null.
 // Satu item di build bawaan hero.
 const apiGearItemSchema = z
@@ -62,4 +52,18 @@ export const apiHeroDetailSchema = z.object({
       })
       .nullish(),
   }),
+})
+
+// content/api-heroes.json — salinan data API yang dibuat oleh scripts/sync-heroes.mjs.
+export const apiSnapshotSchema = z.object({
+  fetchedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Format tanggal harus YYYY-MM-DD'),
+  source: z.string().min(1),
+  heroes: z.array(
+    z.object({
+      name: z.string().min(1),
+      // Path gambar potret, mis. "//host/path.png?w=…".
+      key: z.string().nullish(),
+      detail: apiHeroDetailSchema.shape.data.nullish(),
+    }),
+  ),
 })

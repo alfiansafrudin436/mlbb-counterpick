@@ -1,9 +1,10 @@
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { parse } from 'yaml'
-import { heroesFileSchema, itemsFileSchema } from '@/lib/content-schema'
+import { apiSnapshotSchema, heroesFileSchema, itemsFileSchema } from '@/lib/content-schema'
+import { parseApiSnapshot } from '@/lib/hero-api'
 import { HERO_IMAGE_HOSTS } from '@/lib/image-hosts'
-import type { CuratedHero, ItemCatalog } from '@/types'
+import type { ApiHero, CuratedHero, ItemCatalog } from '@/types'
 
 // Loader murni (tanpa API Next.js) supaya bisa dipakai di build dan di test.
 
@@ -11,6 +12,7 @@ export const CONTENT_DIR = path.join(process.cwd(), 'content')
 
 const HEROES_FILE = 'heroes.yaml'
 const ITEMS_FILE = 'items.yaml'
+const API_HEROES_FILE = 'api-heroes.json'
 
 export class ContentError extends Error {
   constructor(file: string, message: string) {
@@ -84,4 +86,20 @@ export const loadItemCatalog = async (dir = CONTENT_DIR): Promise<ItemCatalog> =
   }
 
   return result.data
+}
+
+// Membaca salinan data API. Bila filenya belum ada, situs tetap jalan hanya dengan data kurasi.
+export const loadApiHeroes = async (dir = CONTENT_DIR): Promise<ApiHero[]> => {
+  let text: string
+  try {
+    text = await readFile(path.join(dir, API_HEROES_FILE), 'utf8')
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return []
+    throw error
+  }
+  const result = apiSnapshotSchema.safeParse(JSON.parse(text))
+  if (!result.success) {
+    throw new ContentError(API_HEROES_FILE, result.error.message)
+  }
+  return parseApiSnapshot(result.data)
 }

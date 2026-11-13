@@ -9,6 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "sync:heroes": "node scripts/sync-heroes.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

@@ -1,21 +1,13 @@
-import { apiHeroDetailSchema, apiHeroListSchema, roleSchema } from '@/lib/content-schema'
+import { roleSchema } from '@/lib/content-schema'
 import { HERO_IMAGE_HOSTS } from '@/lib/image-hosts'
-import type { ApiHero, BuildItem } from '@/types'
+import type { ApiHero, ApiSnapshot, BuildItem } from '@/types'
 
-// Klien API Mobile Legends (tidak terdokumentasi): daftar hero + detail per hero.
-// Semua kegagalan ditoleransi — pemanggil tetap bisa jalan hanya dengan data kurasi.
-
-const API_BASE = 'https://mapi.mobilelegends.com'
-const TIMEOUT_MS = 10_000
-
-const fetchJson = async (path: string): Promise<unknown> => {
-  const response = await fetch(`${API_BASE}${path}`, { signal: AbortSignal.timeout(TIMEOUT_MS) })
-  if (!response.ok) throw new Error(`HTTP ${response.status}`)
-  return response.json()
-}
+// Mengubah salinan data API (content/api-heroes.json) menjadi bentuk yang dipakai aplikasi.
+// Situs tidak memanggil API Mobile Legends saat berjalan; salinannya dibuat manual lewat
+// `pnpm sync:heroes` (scripts/sync-heroes.mjs).
 
 // "//host/path.png?w=…" → "https://host/path.png"; host yang tidak dikenal diabaikan.
-export const toImageUrl = (key: string | undefined) => {
+export const toImageUrl = (key: string | null | undefined) => {
   if (!key) return undefined
   try {
     const url = new URL(key.startsWith('//') ? `https:${key}` : key)
@@ -26,49 +18,23 @@ export const toImageUrl = (key: string | undefined) => {
   }
 }
 
-type HeroDetail = Pick<ApiHero, 'role' | 'counters' | 'counteredBy' | 'build'>
-
-const fetchHeroDetail = async (heroId: string): Promise<HeroDetail> => {
-  const raw = await fetchJson(`/hero/detail?id=${encodeURIComponent(heroId)}&language=en`)
-  const { data } = apiHeroDetailSchema.parse(raw)
-  const role = roleSchema.safeParse(data.type)
-  const build: BuildItem[] = []
-  for (const item of data.gear?.out_pack ?? []) {
-    const name = item?.equip?.name?.trim()
-    if (name && !build.some((existing) => existing.name === name)) {
-      build.push({ name, icon: toImageUrl(item?.equip?.icon ?? undefined) })
-    }
-  }
-  return {
-    role: role.success ? role.data : undefined,
-    counters: data.counters?.counters?.name || undefined,
-    counteredBy: data.counters?.countered?.name || undefined,
-    build,
-  }
-}
-
-// Mengembalikan daftar kosong bila API tidak bisa dihubungi.
-export const fetchApiHeroes = async (): Promise<ApiHero[]> => {
-  try {
-    const list = apiHeroListSchema.parse(await fetchJson('/hero/list?language=en'))
-    const details = await Promise.allSettled(list.data.map((item) => fetchHeroDetail(item.heroid)))
-    const failed = details.filter((detail) => detail.status === 'rejected')
-    if (failed.length) {
-      console.warn(
-        `[hero-api] ${failed.length}/${details.length} detail hero gagal dimuat:`,
-        failed[0].reason,
-      )
-    }
-    return list.data.map((item, index) => {
-      const detail = details[index]
-      return {
-        name: item.name,
-        image: toImageUrl(item.key),
-        ...(detail.status === 'fulfilled' ? detail.value : {}),
+export const parseApiSnapshot = (snapshot: ApiSnapshot): ApiHero[] => {
+  return snapshot.heroes.map(({ name, key, detail }) => {
+    const role = roleSchema.safeParse(detail?.type)
+    const build: BuildItem[] = []
+    for (const item of detail?.gear?.out_pack ?? []) {
+      const itemName = item?.equip?.name?.trim()
+      if (itemName && !build.some((existing) => existing.name === itemName)) {
+        build.push({ name: itemName, icon: toImageUrl(item?.equip?.icon) })
       }
-    })
-  } catch (error) {
-    console.warn('[hero-api] gagal memuat daftar hero, memakai data kurasi saja:', error)
-    return []
-  }
+    }
+    return {
+      name,
+      image: toImageUrl(key),
+      role: role.success ? role.data : undefined,
+      counters: detail?.counters?.counters?.name || undefined,
+      counteredBy: detail?.counters?.countered?.name || undefined,
+      build,
+    }
+  })
 }

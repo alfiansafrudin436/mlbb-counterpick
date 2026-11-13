@@ -1,6 +1,6 @@
 import type { z } from 'zod'
 import type id from '@/app/[lang]/dictionaries/id.json'
-import type { curatedHeroSchema, itemsFileSchema } from '@/lib/content-schema'
+import type { apiSnapshotSchema, curatedHeroSchema, itemsFileSchema } from '@/lib/content-schema'
 import type { LOCALES } from '@/lib/i18n'
 import type { ALL_ROLES, ROLES } from '@/lib/roles'
 import type { TRAITS } from '@/lib/traits'
@@ -30,6 +30,9 @@ export type BuildItem = {
   // URL ikon item; kosong bila item tidak ada di katalog API.
   icon?: string
 }
+
+// Salinan data API di content/api-heroes.json.
+export type ApiSnapshot = z.infer<typeof apiSnapshotSchema>
 
 // Data satu hero dari API Mobile Legends.
 export type ApiHero = {
