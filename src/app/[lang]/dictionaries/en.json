@@ -23,6 +23,25 @@
     "counterScore": "Counters {count}/{total} enemies",
     "versus": "vs {name}",
     "caution": "Watch out:",
-    "counteredBy": "countered by {names}"
+    "counteredBy": "countered by {names}",
+    "loadoutToggle": "Build, emblem & spell",
+    "loadoutBuild": "Core build",
+    "loadoutNoBuild": "No build from the API for this hero yet.",
+    "loadoutAdjust": "Adjust for these enemies",
+    "loadoutNoAdjust": "No specific adjustments needed against this enemy team.",
+    "loadoutEmblem": "Emblem",
+    "loadoutTalent": "Core talent",
+    "loadoutSpell": "Battle spell",
+    "reasonAntiHeal": "Cuts the healing and regen of {names}",
+    "reasonAntiTank": "Shreds the HP and armor of {names}",
+    "reasonMagicDefense": "Soaks magic damage from {names}",
+    "reasonPhysicalDefense": "Soaks physical damage from {names}",
+    "reasonAntiMarksman": "Punishes the basic attacks of {names}",
+    "reasonTenacity": "Shortens CC from {names}",
+    "reasonSurviveBurst": "Survives burst from {names}",
+    "reasonSpellPurify": "Cleanses CC from {names}",
+    "reasonSpellAegis": "Absorbs burst from {names}",
+    "reasonSpellVengeance": "Reflects damage from {names}",
+    "reasonRoleDefault": "Standard choice for this role"
   }
 }

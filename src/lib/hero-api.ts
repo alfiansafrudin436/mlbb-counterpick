@@ -1,6 +1,6 @@
 import { apiHeroDetailSchema, apiHeroListSchema, roleSchema } from '@/lib/content-schema'
 import { HERO_IMAGE_HOSTS } from '@/lib/image-hosts'
-import type { ApiHero } from '@/types'
+import type { ApiHero, BuildItem } from '@/types'
 
 // Klien API Mobile Legends (tidak terdokumentasi): daftar hero + detail per hero.
 // Semua kegagalan ditoleransi — pemanggil tetap bisa jalan hanya dengan data kurasi.
@@ -26,16 +26,24 @@ export const toImageUrl = (key: string | undefined) => {
   }
 }
 
-type HeroDetail = Pick<ApiHero, 'role' | 'counters' | 'counteredBy'>
+type HeroDetail = Pick<ApiHero, 'role' | 'counters' | 'counteredBy' | 'build'>
 
 const fetchHeroDetail = async (heroId: string): Promise<HeroDetail> => {
   const raw = await fetchJson(`/hero/detail?id=${encodeURIComponent(heroId)}&language=en`)
   const { data } = apiHeroDetailSchema.parse(raw)
   const role = roleSchema.safeParse(data.type)
+  const build: BuildItem[] = []
+  for (const item of data.gear?.out_pack ?? []) {
+    const name = item?.equip?.name?.trim()
+    if (name && !build.some((existing) => existing.name === name)) {
+      build.push({ name, icon: toImageUrl(item?.equip?.icon ?? undefined) })
+    }
+  }
   return {
     role: role.success ? role.data : undefined,
     counters: data.counters?.counters?.name || undefined,
     counteredBy: data.counters?.countered?.name || undefined,
+    build,
   }
 }
 

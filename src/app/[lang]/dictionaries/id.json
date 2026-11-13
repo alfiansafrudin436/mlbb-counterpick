@@ -23,6 +23,25 @@
     "counterScore": "Counter {count}/{total} musuh",
     "versus": "vs {name}",
     "caution": "Hati-hati:",
-    "counteredBy": "di-counter {names}"
+    "counteredBy": "di-counter {names}",
+    "loadoutToggle": "Build, emblem & spell",
+    "loadoutBuild": "Build dasar",
+    "loadoutNoBuild": "Build dari API belum tersedia untuk hero ini.",
+    "loadoutAdjust": "Sesuaikan dengan musuh",
+    "loadoutNoAdjust": "Tidak ada penyesuaian khusus untuk tim musuh ini.",
+    "loadoutEmblem": "Emblem",
+    "loadoutTalent": "Talent utama",
+    "loadoutSpell": "Battle spell",
+    "reasonAntiHeal": "Memotong heal dan regen {names}",
+    "reasonAntiTank": "Menembus HP dan armor {names}",
+    "reasonMagicDefense": "Menahan damage sihir dari {names}",
+    "reasonPhysicalDefense": "Menahan damage fisik dari {names}",
+    "reasonAntiMarksman": "Memantulkan basic attack {names}",
+    "reasonTenacity": "Mengurangi durasi CC dari {names}",
+    "reasonSurviveBurst": "Bertahan dari burst {names}",
+    "reasonSpellPurify": "Melepas CC dari {names}",
+    "reasonSpellAegis": "Menahan burst {names}",
+    "reasonSpellVengeance": "Memantulkan damage {names}",
+    "reasonRoleDefault": "Pilihan umum untuk role ini"
   }
 }

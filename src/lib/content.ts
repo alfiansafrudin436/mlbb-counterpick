@@ -2,7 +2,7 @@ import 'server-only'
 import { cacheLife } from 'next/cache'
 import { loadCuratedHeroes } from '@/lib/content-loader'
 import { fetchApiHeroes } from '@/lib/hero-api'
-import { mergeHeroes } from '@/lib/heroes'
+import { buildItemIcons, mergeHeroes } from '@/lib/heroes'
 import type { Hero, Locale } from '@/types'
 
 // Sumber data di-cache sekali untuk semua bahasa (API tidak dipanggil ulang per bahasa).
@@ -18,8 +18,10 @@ const loadSources = async () => {
   return { curated, api }
 }
 
-// Roster dari API digabung dengan data kurasi, dengan teks dalam bahasa `locale`.
-export const getHeroes = async (locale: Locale): Promise<Hero[]> => {
+// Roster dari API digabung dengan data kurasi (teks dalam bahasa `locale`), plus katalog ikon item.
+export const getHeroData = async (
+  locale: Locale,
+): Promise<{ heroes: Hero[]; itemIcons: Record<string, string> }> => {
   const { curated, api } = await loadSources()
-  return mergeHeroes(curated, api, locale)
+  return { heroes: mergeHeroes(curated, api, locale), itemIcons: buildItemIcons(api) }
 }

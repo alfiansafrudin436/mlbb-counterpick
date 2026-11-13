@@ -5,8 +5,10 @@ import { filterHeroes, getRecommendations } from './helper'
 const hero = (name: string, role: Hero['roles'][number], counteredBy: string[]): Hero => ({
   name,
   roles: [role],
+  traits: ['physical'],
   weakness: `Kelemahan ${name}`,
   counteredBy,
+  build: [],
 })
 
 const A = hero('Alfa', 'Assassin', ['Tameng', 'Sihir'])

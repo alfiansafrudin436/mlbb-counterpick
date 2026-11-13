@@ -12,10 +12,11 @@ import { RecommendationList } from '../RecommendationList'
 
 type CounterPickerProps = {
   heroes: Hero[]
+  itemIcons: Record<string, string>
   dict: PickerDictionary
 }
 
-export const CounterPicker = ({ heroes: allHeroes, dict }: CounterPickerProps) => {
+export const CounterPicker = ({ heroes: allHeroes, itemIcons, dict }: CounterPickerProps) => {
   const {
     enemies,
     enemyNames,
@@ -95,6 +96,7 @@ export const CounterPicker = ({ heroes: allHeroes, dict }: CounterPickerProps) =
         <RecommendationList
           enemyCount={enemies.length}
           recommendations={recommendations}
+          itemIcons={itemIcons}
           dict={dict}
         />
       </Panel>

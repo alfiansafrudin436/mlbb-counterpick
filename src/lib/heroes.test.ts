@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { ApiHero, CuratedHero } from '@/types'
-import { mergeHeroes } from './heroes'
+import { buildItemIcons, mergeHeroes } from './heroes'
 
 const CURATED: CuratedHero[] = [
   {
@@ -72,5 +72,34 @@ describe('mergeHeroes', () => {
     const heroes = mergeHeroes(CURATED, [], 'id')
     expect(heroes.map((hero) => hero.name)).toEqual(['Alfa', 'Tameng', 'Lama'])
     expect(heroes.every((hero) => hero.image === undefined)).toBe(true)
+    expect(heroes.every((hero) => hero.build.length === 0)).toBe(true)
+  })
+
+  it('menurunkan sifat dari role dan menggabungkannya dengan kurasi', () => {
+    const curated: CuratedHero[] = [
+      { ...CURATED[1], traits: ['cc'] },
+      { ...CURATED[0], counteredBy: ['Tameng'] },
+    ]
+    const heroes = mergeHeroes(curated, [], 'id')
+    expect(heroes.find((hero) => hero.name === 'Tameng')?.traits).toEqual([
+      'cc',
+      'physical',
+      'tank',
+    ])
+    expect(heroes.find((hero) => hero.name === 'Alfa')?.traits).toEqual(['burst', 'physical'])
+  })
+
+  it('membawa build dari API dan mengumpulkan katalog ikon item', () => {
+    const api: ApiHero[] = [
+      {
+        name: 'Alfa',
+        role: 'Assassin',
+        build: [{ name: 'Pedang', icon: 'https://cdn.test/p.png' }],
+      },
+      { name: 'Tameng', role: 'Tank', build: [{ name: 'Pedang' }, { name: 'Perisai' }] },
+    ]
+    const alfa = mergeHeroes(CURATED, api, 'id').find((hero) => hero.name === 'Alfa')
+    expect(alfa?.build).toEqual([{ name: 'Pedang', icon: 'https://cdn.test/p.png' }])
+    expect(buildItemIcons(api)).toEqual({ Pedang: 'https://cdn.test/p.png' })
   })
 })

@@ -3,10 +3,12 @@ import { HeroAvatar } from '@/components'
 import { format } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
 import type { PickerDictionary, Recommendation } from '@/types'
+import { LoadoutPanel } from '../LoadoutPanel'
 
 type RecommendationListProps = {
   enemyCount: number
   recommendations: Recommendation[]
+  itemIcons: Record<string, string>
   dict: PickerDictionary
 }
 
@@ -28,6 +30,7 @@ const EmptyMessage = ({ children }: EmptyMessageProps) => {
 export const RecommendationList = ({
   enemyCount,
   recommendations,
+  itemIcons,
   dict,
 }: RecommendationListProps) => {
   if (!enemyCount) {
@@ -45,7 +48,7 @@ export const RecommendationList = ({
 
   return (
     <ol className="flex flex-col gap-2.5">
-      {recommendations.map(({ hero, counters, threats, score }, index) => {
+      {recommendations.map(({ hero, counters, threats, score, loadout }, index) => {
         const isBest = hasClearBest && score === topScore
         return (
           <li
@@ -122,6 +125,8 @@ export const RecommendationList = ({
                     </li>
                   )}
                 </ul>
+
+                <LoadoutPanel loadout={loadout} itemIcons={itemIcons} dict={dict} />
               </div>
             </div>
           </li>

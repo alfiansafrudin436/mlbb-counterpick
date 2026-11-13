@@ -1,3 +1,4 @@
+import { resolveTraits } from '@/lib/traits'
 import type { ApiHero, CuratedHero, Hero, Locale, Role } from '@/types'
 
 export const MAX_ENEMIES = 5
@@ -36,8 +37,22 @@ export const mergeHeroes = (curated: CuratedHero[], api: ApiHero[], locale: Loca
   return [...roles.entries()].map(([name, heroRoles]) => ({
     name,
     roles: heroRoles,
+    traits: resolveTraits(heroRoles, curatedByName.get(name)?.traits),
     weakness: curatedByName.get(name)?.weakness[locale],
     counteredBy: [...(counteredBy.get(name) ?? [])],
     image: apiByName.get(name)?.image,
+    build: apiByName.get(name)?.build ?? [],
   }))
+}
+
+// Katalog ikon item (nama → URL), dikumpulkan dari semua build di API.
+// Dipakai untuk menampilkan ikon item situasional yang tidak ada di build hero itu sendiri.
+export const buildItemIcons = (api: ApiHero[]): Record<string, string> => {
+  const icons: Record<string, string> = {}
+  for (const hero of api) {
+    for (const item of hero.build ?? []) {
+      if (item.icon && !icons[item.name]) icons[item.name] = item.icon
+    }
+  }
+  return icons
 }
