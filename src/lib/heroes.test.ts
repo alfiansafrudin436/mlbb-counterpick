@@ -102,4 +102,27 @@ describe('mergeHeroes', () => {
     expect(alfa?.build).toEqual([{ name: 'Pedang', icon: 'https://cdn.test/p.png' }])
     expect(buildItemIcons(api)).toEqual({ Pedang: 'https://cdn.test/p.png' })
   })
+
+  it('menyaring build lewat normalizer: memetakan nama lama dan membuang item yang dihapus', () => {
+    const api: ApiHero[] = [
+      {
+        name: 'Alfa',
+        role: 'Assassin',
+        build: [
+          { name: 'Sepatu - Roam', icon: 'https://cdn.test/roam.png' },
+          { name: 'Sepatu', icon: 'https://cdn.test/sepatu.png' },
+          { name: 'Usang', icon: 'https://cdn.test/usang.png' },
+          { name: 'Pedang' },
+        ],
+      },
+    ]
+    const normalize = (name: string) => (name === 'Usang' ? undefined : name.replace(' - Roam', ''))
+    const alfa = mergeHeroes(CURATED, api, 'id', normalize).find((hero) => hero.name === 'Alfa')
+    // Varian sepatu digabung ke nama dasarnya dan memakai ikon item yang namanya persis sama.
+    expect(alfa?.build).toEqual([
+      { name: 'Sepatu', icon: 'https://cdn.test/sepatu.png' },
+      { name: 'Pedang', icon: undefined },
+    ])
+    expect(buildItemIcons(api, normalize)).toEqual({ Sepatu: 'https://cdn.test/sepatu.png' })
+  })
 })

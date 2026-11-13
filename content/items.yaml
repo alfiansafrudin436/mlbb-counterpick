@@ -1,0 +1,125 @@
+# Katalog item Mobile Legends yang berlaku sekarang. Dipakai untuk:
+# - menyaring build bawaan dari API lama (item yang sudah dihapus dibuang, nama lama dipetakan), dan
+# - memastikan aturan di src/lib/loadout.ts hanya menyarankan item yang masih ada.
+#
+# Perbarui file ini setiap ada patch yang menambah, menghapus, atau mengganti nama item.
+updatedAt: '2026-11-12'
+source: https://mlbbhub.com/id/items
+
+categories:
+  Attack:
+    - Berserker's Fury
+    - Blade of Despair
+    - Blade of the Heptaseas
+    - Corrosion Scythe
+    - Dagger
+    - Demon Hunter Sword
+    - Endless Battle
+    - Fury Hammer
+    - Golden Staff
+    - Great Dragon Spear
+    - Haas's Claws
+    - Hunter Strike
+    - Iron Hunting Bow
+    - Javelin
+    - Knife
+    - Legion Sword
+    - Magic Blade
+    - Malefic Gun
+    - Malefic Roar
+    - Ogre Tomahawk
+    - Power Potion
+    - Regular Spear
+    - Rogue Meteor
+    - Rose Gold Meteor
+    - Sea Halberd
+    - Swift Crossbow
+    - Vampire Mallet
+    - War Axe
+    - Wind of Nature
+    - Windtalker
+  # Item yang masuk kategori Attack sekaligus Magic.
+  Hybrid:
+    - Expert Gloves
+    - Fleeting Time
+    - Sky Piercer
+    - Winter Crown
+  Magic:
+    - Azure Blade
+    - Blood Wings
+    - Book of Sages
+    - Clock of Destiny
+    - Concentrated Energy
+    - Divine Glaive
+    - Elegant Gem
+    - Enchanted Talisman
+    - Exotic Veil
+    - Feather of Heaven
+    - Flask of the Oasis
+    - Flower of Hope
+    - Genius Wand
+    - Glowing Wand
+    - Holy Crystal
+    - Ice Queen Wand
+    - Lantern of Hope
+    - Lightning Truncheon
+    - Magic Necklace
+    - Magic Potion
+    - Magic Wand
+    - Mystery Codex
+    - Mystic Container
+    - Power Crystal
+    - Starlium Scythe
+    - Tome of Evil
+    - Wishing Lantern
+  Defense:
+    - Antique Cuirass
+    - Ares Belt
+    - Athena's Shield
+    - Black Ice Shield
+    - Blade Armor
+    - Brute Force Breastplate
+    - Chastise Pauldron
+    - Cursed Helmet
+    - Dominance Ice
+    - Dreadnaught Armor
+    - Guardian Helmet
+    - Healing Necklace
+    - Hero's Ring
+    - Immortality
+    - Leather Jerkin
+    - Magic Resist Cloak
+    - Molten Essence
+    - Oracle
+    - Queen's Wings
+    - Radiant Armor
+    - Rock Potion
+    - Silence Robe
+    - Steel Legplates
+    - Thunder Belt
+    - Vitality Crystal
+  Movement:
+    - Allow Throw
+    - Arcane Boots
+    - Boots
+    - Broken Heart
+    - Demon Boots
+    - Magic Boots
+    - Rapid Boots
+    - Swift Boots
+    - Throw Forbidden
+    - Tough Boots
+    - Warrior Boots
+  Jungling:
+    - Bloody Retribution
+    - Flame Retribution
+    - Ice Retribution
+  Roaming:
+    - Conceal
+    - Dire Hit
+    - Encourage
+    - Favor
+
+# Nama lama (seperti yang masih dikirim API) → nama sekarang.
+aliases:
+  Haas' Claws: Haas's Claws

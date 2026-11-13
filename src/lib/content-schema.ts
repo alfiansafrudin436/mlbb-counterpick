@@ -21,6 +21,14 @@ export const curatedHeroSchema = z.strictObject({
 
 export const heroesFileSchema = z.array(curatedHeroSchema).min(1)
 
+// content/items.yaml — katalog item yang berlaku sekarang.
+export const itemsFileSchema = z.strictObject({
+  updatedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Format tanggal harus YYYY-MM-DD'),
+  source: z.string().min(1),
+  categories: z.record(z.string().min(1), z.array(z.string().min(1)).min(1)),
+  aliases: z.record(z.string().min(1), z.string().min(1)).optional(),
+})
+
 // Respons API Mobile Legends — hanya field yang dipakai, sisanya diabaikan.
 export const apiHeroListSchema = z.object({
   data: z.array(

@@ -69,11 +69,14 @@ export const getLoadout = (hero: Hero, enemies: Hero[]): Loadout => {
 
   // Urutan = prioritas; hanya MAX_ADJUSTMENTS pertama yang ditampilkan.
   const candidates: (LoadoutAdjustment | false)[] = [
-    heal.length > 0 && {
-      item: role === 'Tank' ? 'Dominance Ice' : dealsMagic ? 'Necklace of Durance' : 'Sea Halberd',
-      reason: 'reasonAntiHeal',
-      enemies: names(heal),
-    },
+    // Anti-heal yang terverifikasi di katalog sekarang hanya Dominance Ice dan Sea Halberd;
+    // hero pemberi damage sihir (selain Tank) belum punya padanannya, jadi tidak diberi saran.
+    heal.length > 0 &&
+      (role === 'Tank' || !dealsMagic) && {
+        item: role === 'Tank' ? 'Dominance Ice' : 'Sea Halberd',
+        reason: 'reasonAntiHeal',
+        enemies: names(heal),
+      },
     tank.length >= MIN_TANK_ENEMIES &&
       role !== 'Tank' &&
       role !== 'Support' && {

@@ -32,7 +32,8 @@ describe('getLoadout', () => {
 
   it('memilih item anti-heal sesuai jenis hero', () => {
     expect(items(hero('T', 'Tank', ['tank', 'physical']), [HEALER])).toContain('Dominance Ice')
-    expect(items(hero('M', 'Mage', ['magic']), [HEALER])).toContain('Necklace of Durance')
+    // Belum ada item anti-heal sihir yang terverifikasi di katalog sekarang.
+    expect(items(hero('M', 'Mage', ['magic']), [HEALER])).toEqual([])
     expect(items(hero('F', 'Fighter', ['physical']), [HEALER])).toContain('Sea Halberd')
   })
 

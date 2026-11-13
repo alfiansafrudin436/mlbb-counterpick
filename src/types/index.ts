@@ -1,6 +1,6 @@
 import type { z } from 'zod'
 import type id from '@/app/[lang]/dictionaries/id.json'
-import type { curatedHeroSchema } from '@/lib/content-schema'
+import type { curatedHeroSchema, itemsFileSchema } from '@/lib/content-schema'
 import type { LOCALES } from '@/lib/i18n'
 import type { ALL_ROLES, ROLES } from '@/lib/roles'
 import type { TRAITS } from '@/lib/traits'
@@ -21,6 +21,9 @@ export type Trait = (typeof TRAITS)[number]
 
 // Entri hasil kurasi di content/heroes.yaml.
 export type CuratedHero = z.infer<typeof curatedHeroSchema>
+
+// Katalog item yang berlaku sekarang (content/items.yaml).
+export type ItemCatalog = z.infer<typeof itemsFileSchema>
 
 export type BuildItem = {
   name: string

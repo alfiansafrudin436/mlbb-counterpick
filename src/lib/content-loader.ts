@@ -1,14 +1,15 @@
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { parse } from 'yaml'
-import { heroesFileSchema } from '@/lib/content-schema'
-import type { CuratedHero } from '@/types'
+import { heroesFileSchema, itemsFileSchema } from '@/lib/content-schema'
+import type { CuratedHero, ItemCatalog } from '@/types'
 
 // Loader murni (tanpa API Next.js) supaya bisa dipakai di build dan di test.
 
 export const CONTENT_DIR = path.join(process.cwd(), 'content')
 
 const HEROES_FILE = 'heroes.yaml'
+const ITEMS_FILE = 'items.yaml'
 
 export class ContentError extends Error {
   constructor(file: string, message: string) {
@@ -43,6 +44,31 @@ export const loadCuratedHeroes = async (dir = CONTENT_DIR): Promise<CuratedHero[
           `counter "${counter}" milik "${hero.name}" tidak ada di file`,
         )
       }
+    }
+  }
+
+  return result.data
+}
+
+export const loadItemCatalog = async (dir = CONTENT_DIR): Promise<ItemCatalog> => {
+  const raw = parse(await readFile(path.join(dir, ITEMS_FILE), 'utf8'))
+  const result = itemsFileSchema.safeParse(raw)
+  if (!result.success) {
+    throw new ContentError(ITEMS_FILE, result.error.message)
+  }
+
+  const names = new Set<string>()
+  for (const [category, items] of Object.entries(result.data.categories)) {
+    for (const item of items) {
+      if (names.has(item)) {
+        throw new ContentError(ITEMS_FILE, `item "${item}" duplikat (kategori ${category})`)
+      }
+      names.add(item)
+    }
+  }
+  for (const [from, to] of Object.entries(result.data.aliases ?? {})) {
+    if (!names.has(to)) {
+      throw new ContentError(ITEMS_FILE, `alias "${from}" menunjuk item "${to}" yang tidak ada`)
     }
   }
 
