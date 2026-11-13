@@ -4,12 +4,17 @@ import { RotateCcwIcon, SearchIcon } from 'lucide-react'
 import { RoleChips } from '@/components'
 import { Button } from '@/components/ui/button'
 import { MAX_ENEMIES } from '@/lib/heroes'
+import type { Hero } from '@/types'
 import { useHomePage } from '../../hooks'
 import { EnemySlots } from '../EnemySlots'
 import { HeroGrid } from '../HeroGrid'
 import { RecommendationList } from '../RecommendationList'
 
-export const CounterPicker = () => {
+type CounterPickerProps = {
+  heroes: Hero[]
+}
+
+export const CounterPicker = ({ heroes: allHeroes }: CounterPickerProps) => {
   const {
     enemies,
     enemyNames,
@@ -24,7 +29,7 @@ export const CounterPicker = () => {
     recommendationRole,
     setRecommendationRole,
     recommendations,
-  } = useHomePage()
+  } = useHomePage(allHeroes)
 
   return (
     <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">

@@ -1,9 +1,12 @@
+import { getHeroes } from '@/lib/content'
 import { CounterPicker } from './components/CounterPicker'
 
-const HomePage = () => {
+const HomePage = async () => {
+  const heroes = await getHeroes()
+
   return (
     <div className="mx-auto max-w-[1200px] px-4 pt-4 pb-10 sm:px-6">
-      <CounterPicker />
+      <CounterPicker heroes={heroes} />
     </div>
   )
 }

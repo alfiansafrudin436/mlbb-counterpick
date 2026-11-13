@@ -52,8 +52,8 @@ export const RecommendationList = ({ enemyCount, recommendations }: Recommendati
               <ul className="mt-2 flex flex-col gap-1 text-[13px] wrap-anywhere text-muted-foreground">
                 {counters.map((enemy) => (
                   <li key={enemy.name}>
-                    <span className="font-semibold text-success">Counter {enemy.name}</span> —{' '}
-                    {enemy.weakness}
+                    <span className="font-semibold text-success">Counter {enemy.name}</span>
+                    {enemy.weakness && ` — ${enemy.weakness}`}
                   </li>
                 ))}
                 {threats.length > 0 && (

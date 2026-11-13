@@ -1,39 +1,53 @@
 import { describe, expect, it } from 'vitest'
-import { HERO_IMAGE_HOSTS, HERO_IMAGES } from './hero-images'
-import { getHero, HEROES } from './heroes'
-import { ROLES } from './roles'
+import type { ApiHero, CuratedHero } from '@/types'
+import { mergeHeroes } from './heroes'
 
-describe('data hero', () => {
-  it('tidak punya nama ganda', () => {
-    const names = HEROES.map((hero) => hero.name)
-    expect(new Set(names).size).toBe(names.length)
+const CURATED: CuratedHero[] = [
+  { name: 'Alfa', roles: ['Assassin'], weakness: 'Tipis', counteredBy: ['Tameng'] },
+  { name: 'Tameng', roles: ['Tank', 'Support'], weakness: 'Lambat', counteredBy: ['Alfa'] },
+  { name: 'Lama', roles: ['Mage'], weakness: 'Tanpa escape', counteredBy: ['Alfa'] },
+]
+
+const API: ApiHero[] = [
+  { name: 'Alfa', image: 'https://cdn.test/alfa.png', role: 'Assassin', counteredBy: 'Baru' },
+  { name: 'Tameng', role: 'Tank', counters: 'Baru', counteredBy: 'Tidak Ada' },
+  { name: 'Baru', image: 'https://cdn.test/baru.png', role: 'Marksman', counters: 'Baru' },
+  { name: 'Tanpa Role' },
+]
+
+const find = (name: string) => mergeHeroes(CURATED, API).find((hero) => hero.name === name)
+
+describe('mergeHeroes', () => {
+  it('mengambil gambar dari API dan kelemahan dari kurasi', () => {
+    expect(find('Alfa')).toMatchObject({ image: 'https://cdn.test/alfa.png', weakness: 'Tipis' })
   })
 
-  it('setiap hero punya role yang valid dan kelemahan', () => {
-    for (const hero of HEROES) {
-      expect(hero.roles.length, hero.name).toBeGreaterThan(0)
-      expect(
-        hero.roles.every((role) => ROLES.includes(role)),
-        hero.name,
-      ).toBe(true)
-      expect(hero.weakness.trim(), hero.name).not.toBe('')
-    }
+  it('menaruh role API di depan lalu menambah role kurasi tanpa duplikat', () => {
+    expect(find('Tameng')?.roles).toEqual(['Tank', 'Support'])
   })
 
-  it('setiap counter merujuk hero lain yang ada di data', () => {
-    for (const hero of HEROES) {
-      expect(hero.counteredBy.length, hero.name).toBeGreaterThan(0)
-      for (const counter of hero.counteredBy) {
-        expect(getHero(counter), `${hero.name} → ${counter}`).toBeDefined()
-        expect(counter, hero.name).not.toBe(hero.name)
-      }
-    }
+  it('menggabungkan counter kurasi dengan relasi dari API', () => {
+    expect(find('Alfa')?.counteredBy).toEqual(['Tameng', 'Baru'])
+    // "Tameng counters Baru" dari API berarti Baru di-counter Tameng.
+    expect(find('Baru')?.counteredBy).toEqual(['Tameng'])
   })
 
-  it('setiap gambar merujuk hero yang ada dan host yang diizinkan', () => {
-    for (const [name, url] of Object.entries(HERO_IMAGES)) {
-      expect(getHero(name), name).toBeDefined()
-      expect(HERO_IMAGE_HOSTS, name).toContain(new URL(url).hostname)
-    }
+  it('mengabaikan counter yang tidak dikenal atau merujuk diri sendiri', () => {
+    expect(find('Tameng')?.counteredBy).toEqual(['Alfa'])
+  })
+
+  it('tetap menampilkan hero yang hanya ada di satu sumber', () => {
+    expect(find('Lama')).toMatchObject({ roles: ['Mage'], image: undefined })
+    expect(find('Baru')).toMatchObject({ roles: ['Marksman'], weakness: undefined })
+  })
+
+  it('membuang hero tanpa role', () => {
+    expect(find('Tanpa Role')).toBeUndefined()
+  })
+
+  it('berjalan hanya dengan data kurasi bila API kosong', () => {
+    const heroes = mergeHeroes(CURATED, [])
+    expect(heroes.map((hero) => hero.name)).toEqual(['Alfa', 'Tameng', 'Lama'])
+    expect(heroes.every((hero) => hero.image === undefined)).toBe(true)
   })
 })

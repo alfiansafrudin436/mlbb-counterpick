@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { getHero, MAX_ENEMIES } from '@/lib/heroes'
+import { MAX_ENEMIES } from '@/lib/heroes'
 
 type DraftState = {
   // Nama hero musuh, urut sesuai waktu dipilih.
@@ -29,10 +29,9 @@ export const useDraftStore = create<DraftState>()(
       partialize: (state) => ({ enemies: state.enemies }),
       merge: (persisted, current) => {
         const saved = (persisted ?? {}) as Partial<DraftState>
-        // Nama yang sudah tidak ada di data diabaikan.
         const enemies = Array.isArray(saved.enemies)
           ? saved.enemies
-              .filter((name): name is string => typeof name === 'string' && Boolean(getHero(name)))
+              .filter((name): name is string => typeof name === 'string')
               .slice(0, MAX_ENEMIES)
           : []
         return { ...current, enemies }
