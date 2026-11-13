@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { HERO_IMAGE_HOSTS, HERO_IMAGES } from './hero-images'
 import { getHero, HEROES } from './heroes'
 import { ROLES } from './roles'
 
@@ -26,6 +27,13 @@ describe('data hero', () => {
         expect(getHero(counter), `${hero.name} → ${counter}`).toBeDefined()
         expect(counter, hero.name).not.toBe(hero.name)
       }
+    }
+  })
+
+  it('setiap gambar merujuk hero yang ada dan host yang diizinkan', () => {
+    for (const [name, url] of Object.entries(HERO_IMAGES)) {
+      expect(getHero(name), name).toBeDefined()
+      expect(HERO_IMAGE_HOSTS, name).toContain(new URL(url).hostname)
     }
   })
 })

@@ -1,4 +1,5 @@
 import type { Hero, Role } from '@/types'
+import { HERO_IMAGES } from './hero-images'
 
 export const MAX_ENEMIES = 5
 
@@ -656,6 +657,7 @@ export const HEROES: Hero[] = RAW_HEROES.map(([name, roles, weakness, counteredB
   roles,
   weakness,
   counteredBy,
+  image: HERO_IMAGES[name],
 }))
 
 const HERO_BY_NAME = new Map(HEROES.map((hero) => [hero.name, hero]))

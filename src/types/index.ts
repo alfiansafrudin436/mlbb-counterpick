@@ -11,6 +11,8 @@ export type Hero = {
   weakness: string
   // Nama hero yang meng-counter hero ini.
   counteredBy: string[]
+  // URL potret hero; kosong bila belum ada gambarnya.
+  image?: string
 }
 
 export type Recommendation = {
