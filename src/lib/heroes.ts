@@ -50,6 +50,7 @@ const normalizeBuild = (
 // - Counter: kurasi lebih dulu, lalu relasi counter dari API.
 // - Hero yang hanya ada di salah satu sumber tetap ditampilkan selama punya role.
 // - Teks kelemahan diambil sesuai `locale`.
+// - Gambar: API lebih dulu; gambar kurasi hanya dipakai bila API tidak punya.
 // - Build disaring lewat `normalize` (lihat src/lib/items.ts); tanpa itu nama item dipakai apa adanya.
 export const mergeHeroes = (
   curated: CuratedHero[],
@@ -89,7 +90,7 @@ export const mergeHeroes = (
     traits: resolveTraits(heroRoles, curatedByName.get(name)?.traits),
     weakness: curatedByName.get(name)?.weakness[locale],
     counteredBy: [...(counteredBy.get(name) ?? [])],
-    image: apiByName.get(name)?.image,
+    image: apiByName.get(name)?.image ?? curatedByName.get(name)?.image,
     build: normalizeBuild(apiByName.get(name)?.build ?? [], normalize, icons),
   }))
 }

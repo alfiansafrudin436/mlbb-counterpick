@@ -14,6 +14,7 @@ export const localizedTextSchema = z.strictObject({
 export const curatedHeroSchema = z.strictObject({
   name: z.string().min(1),
   roles: z.array(roleSchema).min(1),
+  image: z.url().optional(),
   traits: z.array(z.enum(CURATED_TRAITS)).optional(),
   weakness: localizedTextSchema,
   counteredBy: z.array(z.string().min(1)).min(1),

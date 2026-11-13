@@ -64,6 +64,19 @@ describe('mergeHeroes', () => {
     expect(alfa?.weakness).toBe('Squishy')
   })
 
+  it('memakai gambar kurasi hanya bila API tidak punya', () => {
+    const curated: CuratedHero[] = [
+      { ...CURATED[0], image: 'https://cdn.test/kurasi-alfa.png' },
+      { ...CURATED[1] },
+      { ...CURATED[2], image: 'https://cdn.test/kurasi-lama.png' },
+    ]
+    const heroes = mergeHeroes(curated, API, 'id')
+    expect(heroes.find((hero) => hero.name === 'Alfa')?.image).toBe('https://cdn.test/alfa.png')
+    expect(heroes.find((hero) => hero.name === 'Lama')?.image).toBe(
+      'https://cdn.test/kurasi-lama.png',
+    )
+  })
+
   it('membuang hero tanpa role', () => {
     expect(find('Tanpa Role')).toBeUndefined()
   })

@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { parse } from 'yaml'
 import { heroesFileSchema, itemsFileSchema } from '@/lib/content-schema'
+import { HERO_IMAGE_HOSTS } from '@/lib/image-hosts'
 import type { CuratedHero, ItemCatalog } from '@/types'
 
 // Loader murni (tanpa API Next.js) supaya bisa dipakai di build dan di test.
@@ -34,6 +35,16 @@ export const loadCuratedHeroes = async (dir = CONTENT_DIR): Promise<CuratedHero[
   }
 
   for (const hero of result.data) {
+    // next/image hanya mengizinkan host yang terdaftar; host lain akan gagal saat render.
+    if (hero.image) {
+      const url = new URL(hero.image)
+      if (url.protocol !== 'https:' || !HERO_IMAGE_HOSTS.includes(url.hostname)) {
+        throw new ContentError(
+          HEROES_FILE,
+          `gambar "${hero.name}" harus https dari host yang diizinkan, bukan ${url.hostname}`,
+        )
+      }
+    }
     for (const counter of hero.counteredBy) {
       if (counter === hero.name) {
         throw new ContentError(HEROES_FILE, `"${hero.name}" tidak boleh meng-counter dirinya`)

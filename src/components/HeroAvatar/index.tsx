@@ -44,7 +44,7 @@ export const HeroAvatar = ({ hero, size, className }: HeroAvatarProps) => {
           alt=""
           width={64}
           height={64}
-          className="size-full object-cover"
+          className="size-full object-cover object-top"
           onError={() => setFailed(true)}
         />
       ) : (

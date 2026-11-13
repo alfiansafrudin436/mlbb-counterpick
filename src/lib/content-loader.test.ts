@@ -40,6 +40,18 @@ describe('loadCuratedHeroes', () => {
     await expect(loadCuratedHeroes(dir)).rejects.toThrow(ContentError)
   })
 
+  it('menolak gambar dari host yang tidak diizinkan', async () => {
+    const dir = await writeContent(`
+- name: Alfa
+  roles: [Tank]
+  image: https://contoh.test/alfa.png
+  weakness: { id: Lambat, en: Slow }
+  counteredBy: [Beta]
+- { name: Beta, roles: [Mage], weakness: { id: Tipis, en: Squishy }, counteredBy: [Alfa] }
+`)
+    await expect(loadCuratedHeroes(dir)).rejects.toThrow(/host/)
+  })
+
   it('menolak role yang tidak dikenal', async () => {
     const dir = await writeContent(`
 - { name: Alfa, roles: [Jungler], weakness: { id: Lambat, en: Slow }, counteredBy: [Alfa] }

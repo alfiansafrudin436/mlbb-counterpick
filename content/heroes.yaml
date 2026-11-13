@@ -3,6 +3,8 @@
 #
 # name        harus sama persis dengan nama hero di API
 # roles       role hero (dipakai sebagai cadangan dan role tambahan)
+# image       URL potret dari CDN resmi, hanya untuk hero yang belum punya gambar dari API.
+#             Opsional; host harus terdaftar di src/lib/image-hosts.ts.
 # traits      sifat yang dipakai untuk menyarankan build lawan: heal, cc, burst, magic, physical.
 #             Opsional. Tanpa magic/physical, jenis damage ditebak dari role utama;
 #             burst otomatis untuk Assassin dan tank otomatis untuk role Tank.
@@ -643,6 +645,7 @@
     en: Squishy and weak when dived
   counteredBy: [Lancelot, Hayabusa, Fanny, Ling]
 - name: Zhuxin
+  image: https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1235_1/100_13cfeec4bec7a27a09677e519f1ef9d2.png
   roles: [Mage]
   traits: [cc]
   weakness:
@@ -853,12 +856,14 @@
 
 # ── Hero baru (belum ada di API; role dari situs resmi, counter sebagian dari tab Counters resmi) ──
 - name: Suyou
+  image: https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1235_1/100_422ffc7849e8bb01629d2423054ed410.png
   roles: [Assassin, Fighter]
   weakness:
     id: Mengandalkan dash untuk masuk dan keluar
     en: Relies on dashes to get in and out
   counteredBy: [Khufra, Minsitthar, Phoveus, Kaja]
 - name: Lukas
+  image: https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1235_1/100_454c13b2de7b7d1a20fbf553c620510d.png
   roles: [Fighter]
   traits: [cc]
   weakness:
@@ -866,6 +871,7 @@
     en: Needs to build stacks in melee and is easy to kite
   counteredBy: [Valir, Karrie, Baxia, Chou]
 - name: Kalea
+  image: https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1235_1/100_9c5f2904026ba88b7aba8c9b2722f4ad.png
   roles: [Support, Fighter]
   traits: [heal, cc]
   weakness:
@@ -873,18 +879,21 @@
     en: Has to fight up close; her healing is easily cut
   counteredBy: [Baxia, Valir, Karrie, Diggie]
 - name: Zetian
+  image: https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1235_1/100_22dc8b16ea98a735027c3141b74ef841.png
   roles: [Mage]
   weakness:
     id: Ultimate-nya bisa disalin dan dipakai melawan timnya; lemah bila didekati assassin
     en: Her ultimate can be copied and turned against her team; weak when dived by assassins
   counteredBy: [Valentina, Lancelot, Hayabusa, Saber]
 - name: Obsidia
+  image: https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1235_1/100_92bcc9ad2c4c8165a888d34f086a4d28.png
   roles: [Marksman]
   weakness:
     id: Tipis, lemah bila didekati
     en: Squishy and weak when dived
   counteredBy: [Lancelot, Hayabusa, Saber, Natalia]
 - name: Sora
+  image: https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1235_1/100_4749a1f7fe99cbedfc5ef23fc1287d6c.png
   roles: [Fighter, Assassin]
   traits: [cc, burst]
   weakness:
@@ -892,6 +901,7 @@
     en: Has to dive in and is vulnerable to being locked down
   counteredBy: [Khufra, Kaja, Minsitthar, Valir]
 - name: Marcel
+  image: https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1235_1/100_dd980a8816698f1503cdb76201d17dd0.png
   roles: [Support]
   traits: [cc]
   weakness:
@@ -899,6 +909,7 @@
     en: Squishy; relies on an area ultimate that mobile heroes can dodge
   counteredBy: [Lancelot, Hayabusa, Diggie, Saber]
 - name: Hirara
+  image: https://akmweb.youngjoygame.com/web/svnres/img/test/homepage_2_2_16_1235_1/100_ec67aa6f87226cceb794b3786d14c902.png
   roles: [Assassin]
   weakness:
     id: Lincah tapi sangat tipis; langsung mati bila tertangkap burst bertarget
