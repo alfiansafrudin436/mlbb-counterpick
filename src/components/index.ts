@@ -1,4 +1,5 @@
 export { Footer } from './Footer'
 export { Header } from './Header'
 export { HeroAvatar } from './HeroAvatar'
+export { Panel } from './Panel'
 export { RoleChips } from './RoleChips'

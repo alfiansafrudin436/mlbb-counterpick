@@ -1,20 +1,21 @@
 @import 'tailwindcss';
 
-/* Design tokens — satu tema gelap. */
+/* Design tokens — satu tema gelap bernuansa arena MOBA: biru malam, emas, dan cahaya biru. */
 :root {
-  --background: #0e1220;
-  --foreground: #e8ebf7;
-  --card: #171c2e;
-  --muted: #1f2540;
-  --muted-foreground: #98a1c4;
-  --border: #2b3355;
-  --input: #3a4470;
-  --ring: #f5b942;
-  --primary: #f5b942;
-  --primary-hover: #ffcb63;
-  --primary-foreground: #1b1400;
-  --success: #46d39a;
-  --danger: #ff7a7a;
+  --background: #060a17;
+  --foreground: #eaf0ff;
+  --card: #0d1430;
+  --muted: #151e3e;
+  --muted-foreground: #93a0c8;
+  --border: #26325c;
+  --input: #34427a;
+  --ring: #ffd978;
+  --primary: #e8b84a;
+  --primary-hover: #ffd978;
+  --primary-foreground: #1a1200;
+  --accent: #3aa8ff;
+  --success: #3ddc97;
+  --danger: #ff5a66;
 
   --role-tank: #4e9bff;
   --role-fighter: #ff9248;
@@ -36,6 +37,7 @@
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
   --color-success: var(--success);
   --color-danger: var(--danger);
 
@@ -47,6 +49,40 @@
   --color-role-support: var(--role-support);
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-rajdhani), var(--font-geist-sans), ui-sans-serif, sans-serif;
+
+  --animate-rise: rise 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-pop: pop 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+
+/* Sudut terpotong ala panel draft pick. */
+@utility clip-corners {
+  clip-path: polygon(
+    14px 0,
+    100% 0,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    0 100%,
+    0 14px
+  );
+}
+
+@utility clip-corners-sm {
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
 }
 
 @layer base {
@@ -54,6 +90,8 @@
   ::before,
   ::after {
     border-color: var(--color-border);
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-input) transparent;
   }
 
   html {
@@ -61,7 +99,19 @@
   }
 
   body {
-    background: var(--color-background);
+    background-color: var(--color-background);
+    background-image:
+      radial-gradient(
+        60rem 30rem at 10% -10%,
+        color-mix(in srgb, var(--color-accent) 20%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        48rem 26rem at 100% 0%,
+        color-mix(in srgb, var(--color-primary) 11%, transparent),
+        transparent 70%
+      );
+    background-repeat: no-repeat;
     color: var(--color-foreground);
     font-family: var(--font-sans);
   }

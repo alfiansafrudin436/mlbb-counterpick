@@ -1,7 +1,7 @@
 'use client'
 
-import { RotateCcwIcon, SearchIcon } from 'lucide-react'
-import { RoleChips } from '@/components'
+import { RotateCcwIcon, SearchIcon, SkullIcon, TrophyIcon } from 'lucide-react'
+import { Panel, RoleChips } from '@/components'
 import { Button } from '@/components/ui/button'
 import { MAX_ENEMIES } from '@/lib/heroes'
 import type { Hero } from '@/types'
@@ -32,24 +32,27 @@ export const CounterPicker = ({ heroes: allHeroes }: CounterPickerProps) => {
   } = useHomePage(allHeroes)
 
   return (
-    <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
-      <section aria-labelledby="judul-musuh" className="min-w-0 rounded-2xl border bg-card p-4">
-        <div className="mb-3 flex items-center justify-between gap-3">
-          <h2 id="judul-musuh" className="text-[17px] font-semibold">
-            Hero musuh{' '}
-            <span className="ml-1 font-medium text-muted-foreground">
-              {enemies.length}/{MAX_ENEMIES}
+    <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
+      <Panel
+        id="judul-musuh"
+        title="Tim musuh"
+        icon={SkullIcon}
+        tone="danger"
+        aside={
+          <div className="flex items-center gap-3">
+            <span className="font-display text-xl font-bold text-muted-foreground tabular-nums">
+              <span className="text-danger">{enemies.length}</span>/{MAX_ENEMIES}
             </span>
-          </h2>
-          <Button size="sm" onClick={reset} disabled={!enemies.length}>
-            <RotateCcwIcon aria-hidden />
-            Reset
-          </Button>
-        </div>
-
+            <Button size="sm" onClick={reset} disabled={!enemies.length}>
+              <RotateCcwIcon aria-hidden />
+              Reset
+            </Button>
+          </div>
+        }
+      >
         <EnemySlots enemies={enemies} onRemove={toggleEnemy} />
 
-        <div className="relative mt-3.5">
+        <div className="relative mt-4">
           <SearchIcon
             aria-hidden
             className="pointer-events-none absolute top-1/2 left-3 size-[18px] -translate-y-1/2 text-muted-foreground"
@@ -61,7 +64,7 @@ export const CounterPicker = ({ heroes: allHeroes }: CounterPickerProps) => {
             placeholder="Cari hero…"
             aria-label="Cari hero"
             autoComplete="off"
-            className="h-11 w-full rounded-[10px] border border-input bg-background pr-3 pl-10 placeholder:text-muted-foreground"
+            className="h-11 w-full rounded-[10px] border border-input bg-background/70 pr-3 pl-10 transition-colors placeholder:text-muted-foreground focus:border-accent"
           />
         </div>
         <RoleChips
@@ -71,23 +74,17 @@ export const CounterPicker = ({ heroes: allHeroes }: CounterPickerProps) => {
           className="my-3"
         />
         <HeroGrid heroes={heroes} selected={enemyNames} isFull={isFull} onToggle={toggleEnemy} />
-      </section>
+      </Panel>
 
-      <section
-        aria-labelledby="judul-rekomendasi"
-        className="min-w-0 rounded-2xl border bg-card p-4"
-      >
-        <h2 id="judul-rekomendasi" className="text-[17px] font-semibold">
-          Rekomendasi hero
-        </h2>
+      <Panel id="judul-rekomendasi" title="Rekomendasi pick" icon={TrophyIcon}>
         <RoleChips
           label="Filter role rekomendasi"
           value={recommendationRole}
           onChange={setRecommendationRole}
-          className="my-3"
+          className="mb-4"
         />
         <RecommendationList enemyCount={enemies.length} recommendations={recommendations} />
-      </section>
+      </Panel>
     </div>
   )
 }
